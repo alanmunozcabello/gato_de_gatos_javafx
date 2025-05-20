@@ -34,6 +34,6 @@ public class Cuadrante{
     }
 
     public Gato getCuadrante(int fila, int columna){
-        return cuadrantes[i][j];
+        return cuadrantes[fila][columna];
     }
 }

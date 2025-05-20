@@ -6,27 +6,33 @@ public class Jugador{
     int partidasJugadas;
     int partidasGanadas;
     int partidasPerdidas; 
-    // int fila, columna;
+    int fila, columna;
 
     //constructor con todos los atributos
-    public Jugador(String nombre, char simbolo, Int partidasJugadas, Int partidasGanadas, Int partidasPerdidas){
+    public Jugador(String nombre, char simbolo, int partidasJugadas, int partidasGanadas, int partidasPerdidas){
         this.nombre = nombre;
         this.simbolo = simbolo;
         this.partidasJugadas = partidasJugadas;
         this.partidasGanadas = partidasGanadas;
         this.partidasPerdidas = partidasPerdidas;
     }
+    public Jugador(String nombre){
+        this.nombre=nombre;
+    }
+    public Jugador(char simbolo){
+        this.simbolo=simbolo;
+    }
     //constructor sin simbolo
-    public Jugador(String nombre, Int partidasJugadas, Int partidasGanadas, Int partidasPerdidas){ 
+    public Jugador(String nombre, int partidasJugadas, int partidasGanadas, int partidasPerdidas){ 
         this.nombre = nombre;
         this.partidasJugadas = partidasJugadas;
         this.partidasGanadas = partidasGanadas;
         this.partidasPerdidas = partidasPerdidas;
     }
 
-    public hacerSeleccion(Gato gato){ //recibe el gato para hacer la seleccion
-        int fila;
-        int columna;
+    public void hacerSeleccion(Gato gato){ //recibe el gato para hacer la seleccion
+        int fila=0;
+        int columna=0;
         Scanner scanner = new Scanner(System.in);
         boolean bandera=false; //siendo falsa es que la casilla no es valida
         while(!bandera){
@@ -46,22 +52,22 @@ public class Jugador{
         this.simbolo = simbolo;
     }
     //metodos en caso de ser necesarios
-    public getSimbolo(){
+    public char getSimbolo(){
         return simbolo;
     }
-    public getFila(){
+    public int getFila(){
         return fila;
     }
-    public getColumna(){
+    public int getColumna(){
         return columna;
     }
-    public getpartidasJugadas(){
+    public int getpartidasJugadas(){
         return partidasJugadas;
     }
-    public getPartidasGanadas(){
+    public int getPartidasGanadas(){
         return partidasGanadas;
     }
-    public getPartidasPerdidas(){
+    public int getPartidasPerdidas(){
         return partidasPerdidas;
     }
 }

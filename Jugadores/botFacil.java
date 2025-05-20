@@ -6,7 +6,8 @@ public class botFacil extends Jugador {
     @Override
     public void hacerSeleccion(Gato gato){
         // Selecciona una casilla aleatoria y se escoje cuando sean validas
-        int fila, columna;
+        int fila=0; 
+        int columna=0;
         boolean bandera=false; //siendo falsa es que la casilla no es valida
         while(!bandera){
             fila= (int) (Math.random() * 3)-1;

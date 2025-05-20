@@ -15,6 +15,7 @@ public class Gato {
         if(gato[fila][columna] == ' '){
             return true;
         }
+        return false;
     }
 
     public void marcarSimbolo(int fila, int columna, char simbolo){
@@ -25,8 +26,12 @@ public class Gato {
         return estado;
     }
 
-    @Override
-    public String toString(){
-        //kitian
+    public char[][] getGato(){
+        return this.gato;
     }
+    
+    // @Override
+    // public String toString(){
+    //     //kitian
+    // }
 }

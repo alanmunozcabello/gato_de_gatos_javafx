@@ -1,12 +1,12 @@
 public class botDificil extends Jugador {
-    public botDificil(String nombre, char simbolo) {
-        super(nombre, simbolo, 0, 0, 0);
+    public botDificil(char simbolo){
+        super(simbolo);
     }
 
     @Override
     public void hacerSeleccion(Gato gato) {
         // Obtener el estado actual del tablero
-        char[][] tablero = gato.getTablero(); // Debes agregar este método en Gato si no existe
+        char[][] tablero = gato.getGato(); // Debes agregar este método en Gato si no existe
 
         int[] mejorJugada = obtenerMejorMovimiento(tablero, this.simbolo);
 
@@ -19,7 +19,7 @@ public class botDificil extends Jugador {
     }//
 
     // Minimax adaptado para el ambiente del juego
-    private int[] obtenerMejorMovimiento(char[][] tablero, char miSimbolo) {
+    public int[] obtenerMejorMovimiento(char[][] tablero, char miSimbolo) { //para el producto final cambiarlo a private
         char rivalSimbolo = (miSimbolo == 'X') ? 'O' : 'X';
         int mejorValor = Integer.MIN_VALUE;
         int[] mejorJugada = {-1, -1};
