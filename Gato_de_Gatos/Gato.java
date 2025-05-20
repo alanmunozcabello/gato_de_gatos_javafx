@@ -12,14 +12,14 @@ public class Gato {
     }
 
     public boolean verificarCasillaOcupada(int fila, int columna){ //verifica si la casilla esta ocupada
-        if(gato[fila][columna] != ' '){
+        if(this.gato[fila][columna] != ' '){
             return false;
         }
         return true;
     }
 
     public void marcarSimbolo(int fila, int columna, char simbolo){ //marca la casilla con el simbolo del jugador
-        gato[fila][columna] = simbolo;
+        this.gato[fila][columna] = simbolo;
     }
 
     public String getEstado(){ //para saber el estado del gato
