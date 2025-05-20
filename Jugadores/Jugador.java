@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class Jugador{
+    String nombre;
+    char simbolo;
+    int partidasJugadas;
+    int partidasGanadas;
+    int partidasPerdidas; 
+    // int fila, columna;
+
+    //constructor con todos los atributos
+    public Jugador(String nombre, char simbolo, Int partidasJugadas, Int partidasGanadas, Int partidasPerdidas){
+        this.nombre = nombre;
+        this.simbolo = simbolo;
+        this.partidasJugadas = partidasJugadas;
+        this.partidasGanadas = partidasGanadas;
+        this.partidasPerdidas = partidasPerdidas;
+    }
+    //constructor sin simbolo
+    public Jugador(String nombre, Int partidasJugadas, Int partidasGanadas, Int partidasPerdidas){ 
+        this.nombre = nombre;
+        this.partidasJugadas = partidasJugadas;
+        this.partidasGanadas = partidasGanadas;
+        this.partidasPerdidas = partidasPerdidas;
+    }
+
+    public hacerSeleccion(Gato gato){ //recibe el gato para hacer la seleccion
+        int fila;
+        int columna;
+        Scanner scanner = new Scanner(System.in);
+        boolean bandera=false; //siendo falsa es que la casilla no es valida
+        while(!bandera){
+            System.out.println("ingrese la casilla en la que quiere tirar: [Formato: fila columna]");
+            fila = scanner.nextInt()-1;
+            columna = scanner.nextInt()-1;
+            //verifica si la casilla es ocupada
+            bandera=gato.verificarCasillaOcupada(fila, columna);//si la casilla es valida se saldra del ciclo
+        }
+        gato.marcarSimbolo(fila, columna, simbolo); //marca el simbolo en la casilla valida
+        this.fila = fila;
+        this.columna = columna;
+    }
+
+    //para cambiar el simbolo
+    public void setSimbolo(char simbolo){
+        this.simbolo = simbolo;
+    }
+    //metodos en caso de ser necesarios
+    public getSimbolo(){
+        return simbolo;
+    }
+    public getFila(){
+        return fila;
+    }
+    public getColumna(){
+        return columna;
+    }
+    public getpartidasJugadas(){
+        return partidasJugadas;
+    }
+    public getPartidasGanadas(){
+        return partidasGanadas;
+    }
+    public getPartidasPerdidas(){
+        return partidasPerdidas;
+    }
+}
