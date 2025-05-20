@@ -1,6 +1,6 @@
 public class botFacil extends Jugador {
-    public botFacil(String nombre) {
-        super(nombre);
+    public botFacil(char simbolo) {
+        super(simbolo);
     }
 
     @Override

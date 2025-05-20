@@ -46,6 +46,23 @@ public class Jugador{
         this.fila = fila;
         this.columna = columna;
     }
+    //para aumentar el numero de partidas jugadas -> se llama al inicio de cada partida
+    public void aumentarPartidasJugadas(){
+        this.partidasJugadas=this.partidasJugadas+1;
+    }
+    public void aumentarPartidasGanadas(){
+        this.partidasGanadas=this.partidasGanadas+1;
+    }
+    public void aumentarPartidasPerdidas(){
+        this.partidasPerdidas=this.partidasPerdidas+1;
+    }
+    //metodo para calcular el winrate
+    public double calcularWinRate(){
+        if(this.partidasJugadas==0){ //si no se usa este if no s epoddría calcular el winrate -> divición entre 0
+            return 0;
+        }
+        return (double)this.partidasGanadas/this.partidasJugadas*100; //*100 para que sea un porcentaje
+    }
 
     //para cambiar el simbolo
     public void setSimbolo(char simbolo){
@@ -53,21 +70,26 @@ public class Jugador{
     }
     //metodos en caso de ser necesarios
     public char getSimbolo(){
-        return simbolo;
+        return this.simbolo;
     }
     public int getFila(){
-        return fila;
+        return this.fila;
     }
     public int getColumna(){
-        return columna;
+        return this.columna;
     }
     public int getpartidasJugadas(){
-        return partidasJugadas;
+        return this.partidasJugadas;
     }
     public int getPartidasGanadas(){
-        return partidasGanadas;
+        return this.partidasGanadas;
     }
     public int getPartidasPerdidas(){
-        return partidasPerdidas;
+        return this.partidasPerdidas;
+    }
+    @override
+    public String toString(){
+        return "Jugador: "+ this.nombre + "\nSimbolo: " + this.simbolo + "\nPartidas Jugadas: " + this.partidasJugadas + "\nPartidas Ganadas: " + this.partidasGanadas + 
+                "\nPartidas Perdidas: " + this.partidasPerdidas + "WinRate: " + calcularWinRate() + "%";
     }
 }

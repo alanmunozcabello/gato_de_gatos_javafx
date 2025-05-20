@@ -20,17 +20,22 @@ public class botDificil extends Jugador {
 
     // Minimax adaptado para el ambiente del juego
     public int[] obtenerMejorMovimiento(char[][] tablero, char miSimbolo) { //para el producto final cambiarlo a private
-        char rivalSimbolo = (miSimbolo == 'X') ? 'O' : 'X';
+        char rivalSimbolo=' ';
+        if (miSimbolo == 'X') {
+            rivalSimbolo = 'O';
+        } else {
+            rivalSimbolo = 'X';
+        }
         int mejorValor = Integer.MIN_VALUE;
         int[] mejorJugada = {-1, -1};
 
-        for (int fila = 0; fila < 3; fila++) {
-            for (int col = 0; col < 3; col++) {
-                if (tablero[fila][col] == ' ') {
+        for(int fila = 0; fila < 3; fila++){
+            for(int col = 0; col < 3; col++){
+                if(tablero[fila][col] == ' '){
                     tablero[fila][col] = miSimbolo;
                     int valor = minimax(tablero, false, miSimbolo, rivalSimbolo);
                     tablero[fila][col] = ' ';
-                    if (valor > mejorValor) {
+                    if (valor > mejorValor){
                         mejorValor = valor;
                         mejorJugada[0] = fila;
                         mejorJugada[1] = col;
@@ -48,9 +53,9 @@ public class botDificil extends Jugador {
 
         if (esMaximizando) {
             int mejor = Integer.MIN_VALUE;
-            for (int fila = 0; fila < 3; fila++) {
-                for (int col = 0; col < 3; col++) {
-                    if (tablero[fila][col] == ' ') {
+            for (int fila = 0; fila < 3; fila++){
+                for (int col = 0; col < 3; col++){
+                    if (tablero[fila][col] == ' '){
                         tablero[fila][col] = miSimbolo;
                         int valor = minimax(tablero, false, miSimbolo, rivalSimbolo);
                         tablero[fila][col] = ' ';
@@ -61,9 +66,9 @@ public class botDificil extends Jugador {
             return mejor;
         } else {
             int peor = Integer.MAX_VALUE;
-            for (int fila = 0; fila < 3; fila++) {
-                for (int col = 0; col < 3; col++) {
-                    if (tablero[fila][col] == ' ') {
+            for (int fila = 0; fila < 3; fila++){
+                for (int col = 0; col < 3; col++){
+                    if (tablero[fila][col] == ' '){
                         tablero[fila][col] = rivalSimbolo;
                         int valor = minimax(tablero, true, miSimbolo, rivalSimbolo);
                         tablero[fila][col] = ' ';
@@ -75,10 +80,12 @@ public class botDificil extends Jugador {
         }
     }
 
-    private boolean tableroLleno(char[][] tablero) {
-        for (int fila = 0; fila < 3; fila++) {
-            for (int col = 0; col < 3; col++) {
-                if (tablero[fila][col] == ' ') return false;
+    private boolean tableroLleno(char[][] tablero){
+        for (int fila = 0; fila < 3; fila++){
+            for (int col = 0; col < 3; col++){
+                if (tablero[fila][col] == ' '){
+                    return false;
+                }
             }
         }
         return true;
