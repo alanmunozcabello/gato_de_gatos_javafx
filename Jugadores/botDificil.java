@@ -16,7 +16,7 @@ public class botDificil extends Jugador {
         gato.marcarSimbolo(fila, columna, this.simbolo);
         this.fila = fila;
         this.columna = columna;
-    }
+    }//
 
     // Minimax adaptado para el ambiente del juego
     private int[] obtenerMejorMovimiento(char[][] tablero, char miSimbolo) {
