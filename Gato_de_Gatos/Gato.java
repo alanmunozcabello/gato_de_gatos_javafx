@@ -12,10 +12,10 @@ public class Gato {
     }
 
     public boolean verificarCasillaOcupada(int fila, int columna){ //verifica si la casilla esta ocupada
-        if(gato[fila][columna] == ' '){
-            return true;
+        if(gato[fila][columna] != ' '){
+            return false;
         }
-        return false;
+        return true;
     }
 
     public void marcarSimbolo(int fila, int columna, char simbolo){ //marca la casilla con el simbolo del jugador
