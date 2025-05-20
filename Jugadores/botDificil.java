@@ -6,7 +6,7 @@ public class botDificil extends Jugador {
     @Override
     public void hacerSeleccion(Gato gato) {
         // Obtener el estado actual del tablero
-        char[][] tablero = gato.getGato(); // Debes agregar este método en Gato si no existe
+        char[][] tablero = gato.getGato();
 
         int[] mejorJugada = obtenerMejorMovimiento(tablero, this.simbolo);
 
@@ -16,7 +16,7 @@ public class botDificil extends Jugador {
         gato.marcarSimbolo(fila, columna, this.simbolo);
         this.fila = fila;
         this.columna = columna;
-    }//
+    }
 
     // Minimax adaptado para el ambiente del juego
     public int[] obtenerMejorMovimiento(char[][] tablero, char miSimbolo) { //para el producto final cambiarlo a private
