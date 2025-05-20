@@ -2,8 +2,8 @@ public class TestBot {
     public static void main(String[] args) {
         // Tablero de ejemplo: 'X' es el bot, 'O' es el rival
         char[][] tablero = {
-            {'X', 'O', ' '},
-            {' ', 'O', ' '},
+            {' ', ' ', ' '},
+            {' ', ' ', ' '},
             {' ', ' ', ' '}
         };
 
