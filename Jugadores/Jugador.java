@@ -7,6 +7,8 @@ public class Jugador{
     int partidasGanadas;
     int partidasPerdidas; 
     int fila, columna;
+    boolean gana;
+    boolean surrender;
 
     //constructor con todos los atributos
     public Jugador(String nombre, char simbolo, int partidasJugadas, int partidasGanadas, int partidasPerdidas){

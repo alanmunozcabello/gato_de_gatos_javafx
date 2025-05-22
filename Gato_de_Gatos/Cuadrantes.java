@@ -31,11 +31,17 @@ public class Cuadrantes{
     //si el metodo anterior devuelve false se muestra un mensaje de que no hay cuadrantes libres
     //kitian
 
-    public void mostrarCuadrantes(){
-        //kitian
+    // public void mostrarCuadrantes(){
+    //     //kitian
+    // }
+
+    public void mostrarCoordsCuadrantesLibres(int x, int y){// mostrar al usuario las coordenadas de los cuadrantes libres
+
     }
 
-    //metodo para terminar la partida?
+    public void terminarJuego(){ //termina el juego
+        //logica de terminar juego
+    }
 
     public Gato getCuadrante(int fila, int columna){
         return this.cuadrantes[fila][columna];
