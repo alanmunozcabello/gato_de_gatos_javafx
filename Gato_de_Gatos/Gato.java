@@ -29,10 +29,4 @@ public class Gato {
     public char[][] getGato(){ //retorna el gato completo
         return this.gato;
     }
-    
-    @Override
-    public String toString(){
-        return " " + getCuadrante(0,0).getGato()[0][0] + " | " + getCuadrante(0,0).getGato()[0][1] + " | " + getCuadrante(0,0).getGato()[0][2] + " \n"
-               "___|___|___"
-    }
 }

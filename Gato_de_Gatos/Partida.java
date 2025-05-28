@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Partida{
     private static Partida instance;
     private int movimientosJ1;
@@ -8,7 +9,7 @@ public class Partida{
     private Jugador jugadorO;
     private ArrayList<Observador> observadores;
 
-    private partida(){
+    private Partida(){
     }
 
     static Partida getInstance(){
@@ -53,13 +54,13 @@ public class Partida{
         this.cuadranteActualDeJuego = this.cuadrantes.getCuadrante(x, y);
     }
 
-    public Gato seleccionarCuadranteDeJuego(){ //metodo para elegir el cuadrante de juego
+    //public Gato seleccionarCuadranteDeJuego(){ //metodo para elegir el cuadrante de juego
         //logica para elegir cuadrante de juego
-    }
+    //}-----------------------------------------------------
 
-    public boolean verificarVictoria(){ //verifica si uno de los jugadores ganó
+    //public boolean verificarVictoria(){ //verifica si uno de los jugadores ganó
         //logica para verificar victoria
-    }
+    //}------------------------------------------------
 
     public void bloquearCuadrante(){ //bloquea el cuadrante de juego
         //logica para bloquear el cuadrante
@@ -78,7 +79,7 @@ public class Partida{
 
     public void notificarObservadores(){
         for(Observador observador : this.observadores){
-            observador.actualizar();
+            observador.actualizar(cuadrantes);
         }
     }
 }

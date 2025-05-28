@@ -89,7 +89,7 @@ public class Jugador{
     public int getPartidasPerdidas(){
         return this.partidasPerdidas;
     }
-    @override
+    @Override
     public String toString(){
         return "Jugador: "+ this.nombre + "\nSimbolo: " + this.simbolo + "\nPartidas Jugadas: " + this.partidasJugadas + "\nPartidas Ganadas: " + this.partidasGanadas + 
                 "\nPartidas Perdidas: " + this.partidasPerdidas + "WinRate: " + calcularWinRate() + "%";
