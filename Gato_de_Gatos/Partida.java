@@ -89,10 +89,28 @@ public class Partida{
     public void setCuadranteActualDeJuego(int x, int y){
         this.cuadranteActualDeJuego = this.cuadrantes.getCuadrante(x, y);
     }
-
-    //public Gato seleccionarCuadranteDeJuego(){ //metodo para elegir el cuadrante de juego
-        //logica para elegir cuadrante de juego
-    //}-----------------------------------------------------
+    
+    //Supondré que es cuando el jugador tiene que elegir el cuadrante (ya sea porque sacó mayor número al principio o porque
+    //el cuadrante que le tocó por la mecánica del juego estaba ocupado)
+    //Si se le pasan argumentos:
+    public Gato seleccionarCuadranteDeJuego(int x, int y){ 
+        Gato gato = cuadrantes.getCuadrante(x,y);
+        return gato;
+    }
+    //Si no:
+    public Gato seleccionarCuadranteDeJuego(){ 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("¡Elija el cuadrante!");
+        System.out.println("Fila de cuadrante a jugar: ");
+        int x = scanner.nextInt();
+        System.out.println("Columna de cuadrante a jugar: ");
+        int y = scanner.nextInt();
+        Gato gato = cuadrantes.getCuadrante(x,y);
+        scanner.close();
+        return gato;
+    }
+    //Sinceramente pienso que podríamos borrar este metodo porque bastaría con pedirle el x e y al jugador y pasarselo al
+    //getCuadrante y taría (a menos que lo que tenías en mente respecto al metodo era otra wea xde)
 
     //public boolean verificarVictoria(){ //verifica si uno de los jugadores ganó
         //logica para verificar victoria

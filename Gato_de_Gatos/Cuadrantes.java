@@ -10,8 +10,11 @@ public class Cuadrantes{
         }
     }
 
-    public void bloquearCuadrante(int fila, int columna){ //necesario?
-        // cuadrantes[fila][columna].bloquear();
+    public void bloquearCuadrante(int fila, int columna){ //necesario? [Cristian: Maybe maybe]
+        //NO SE PUEDE COMPARAR STRING CON CHAR MANO, ¿QUE SE HACE?
+        //if(cuadrantes[fila][columna].getGato()[0][0] == "X"){
+        //}
+        //cuadrantes[fila][columna].setEstado(null);
         //logica de bloquear cuadrante -> gato.getEstado
     }
 
@@ -34,6 +37,8 @@ public class Cuadrantes{
     // public void mostrarCuadrantes(){ ----------------------necesario?----------------------
     //     //kitian
     // }
+    //I don't think so bro (respecto a si es necesario). Después de todo vamos a estar mostrando la matriz completa en cada turno
+    //¿no? (si se te ocurre no imprimir esa aberrocidad de matriz a cada rato en ese caso este metodo sirve)
 
     public void mostrarCoordsCuadrantesLibres(int x, int y){// mostrar al usuario las coordenadas de los cuadrantes libres
         System.out.println("Coordenadas de los cuadrantes libres: "+x+1+","+y+1);
