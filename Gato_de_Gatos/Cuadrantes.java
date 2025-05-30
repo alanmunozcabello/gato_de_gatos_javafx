@@ -16,27 +16,27 @@ public class Cuadrantes{
     }
 
     public boolean hayCuadrantesLibres(){ //chequea si hay cuadrantes libres
+        boolean bandera=false;
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
-                if(this.cuadrantes[i][j].getEstado()=="libre"){ //hay a lo menos un cuadrante libre
-                    return true;
+                if(this.cuadrantes[i][j].getEstado().equals("libre")){ //hay a lo menos un cuadrante libre
+                    mostrarCoordsCuadrantesLibres(i, j);
+                    bandera=true;
                 }
             }
         }
-        return false; //no hay cuadrantes libres
+        return bandera; //no hay cuadrantes libres
     }
 
     //metodo para obtener/mostrar coordenadas de los cuadrantes libres
     //si hay cuadrante libre se muestran las coordenadas
     //si el metodo anterior devuelve false se muestra un mensaje de que no hay cuadrantes libres
-    //kitian
-
-    // public void mostrarCuadrantes(){
+    // public void mostrarCuadrantes(){ ----------------------necesario?----------------------
     //     //kitian
     // }
 
     public void mostrarCoordsCuadrantesLibres(int x, int y){// mostrar al usuario las coordenadas de los cuadrantes libres
-
+        System.out.println("Coordenadas de los cuadrantes libres: "+x+1+","+y+1);
     }
 
     public void terminarJuego(){ //termina el juego

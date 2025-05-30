@@ -38,13 +38,20 @@ public class Jugador{
         Scanner scanner = new Scanner(System.in);
         boolean bandera=false; //siendo falsa es que la casilla no es valida
         while(!bandera){
-            System.out.println("ingrese la casilla en la que quiere tirar: [Formato: fila columna]");
-            fila = scanner.nextInt()-1;
-            columna = scanner.nextInt()-1;
+            System.out.println("ingrese la casilla en la que quiere tirar [Formato: fila columna una a una]: \n");
+            fila = scanner.nextInt() -1;
+            scanner.nextLine();//consumir el salto de linea
+            columna = scanner.nextInt() -1;
+            scanner.nextLine();
             //verifica si la casilla es ocupada
-            bandera=gato.verificarCasillaOcupada(fila, columna);//si la casilla es valida se saldra del ciclo
+            if(fila>=0 && fila<=2 && columna>=0 && columna<=2){
+                bandera=gato.verificarCasillaOcupada(fila, columna);//si la casilla es valida se saldra del ciclo
+            }
+            if(!bandera){
+                System.out.println("la casilla está ocupada o ingresó coordenadas fuera de limite, intente de nuevo\n");
+            }
         }
-        gato.marcarSimbolo(fila, columna, simbolo); //marca el simbolo en la casilla valida
+        gato.marcarSeleccion(fila, columna, simbolo); //marca el simbolo en la casilla valida
         this.fila = fila;
         this.columna = columna;
     }
@@ -52,10 +59,10 @@ public class Jugador{
     public void aumentarPartidasJugadas(){
         this.partidasJugadas=this.partidasJugadas+1;
     }
-    public void aumentarPartidasGanadas(){
+    public void aumentarPartidasGanadas(){ //-> se llama al final de la partida si gana
         this.partidasGanadas=this.partidasGanadas+1;
     }
-    public void aumentarPartidasPerdidas(){
+    public void aumentarPartidasPerdidas(){ //-> se llama al final de la partida si pierde
         this.partidasPerdidas=this.partidasPerdidas+1;
     }
     //metodo para calcular el winrate
@@ -63,7 +70,8 @@ public class Jugador{
         if(this.partidasJugadas==0){ //si no se usa este if no s epoddría calcular el winrate -> divición entre 0
             return 0;
         }
-        return (double)this.partidasGanadas/this.partidasJugadas*100; //*100 para que sea un porcentaje
+        double winRate=this.partidasGanadas/this.partidasJugadas*100;//*100 para que sea un porcentaje
+        return winRate;
     }
 
     //para cambiar el simbolo
@@ -88,6 +96,9 @@ public class Jugador{
     }
     public int getPartidasPerdidas(){
         return this.partidasPerdidas;
+    }
+    public String getNombre() {
+        return nombre;
     }
     @Override
     public String toString(){

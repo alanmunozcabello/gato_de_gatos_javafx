@@ -18,8 +18,12 @@ public class Gato {
         return true;
     }
 
-    public void marcarSimbolo(int fila, int columna, char simbolo){ //marca la casilla con el simbolo del jugador
+    public void marcarSeleccion(int fila, int columna, char simbolo){ //marca la casilla con el simbolo del jugador
         this.gato[fila][columna] = simbolo;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getEstado(){ //para saber el estado del gato
@@ -28,5 +32,13 @@ public class Gato {
 
     public char[][] getGato(){ //retorna el gato completo
         return this.gato;
+    }
+
+    public void mostrarGato(){
+        System.out.println(this.gato[0][0] + "|" + this.gato[0][1] + "|" + this.gato[0][2]);
+        System.out.println("-----");
+        System.out.println(this.gato[1][0] + "|" + this.gato[1][1] + "|" + this.gato[1][2]);
+        System.out.println("-----");
+        System.out.println(this.gato[2][0] + "|" + this.gato[2][1] + "|" + this.gato[2][2]);
     }
 }
