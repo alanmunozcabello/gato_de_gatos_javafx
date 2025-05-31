@@ -11,12 +11,69 @@ public class Cuadrantes{
     }
 
     public void bloquearCuadrante(int fila, int columna){ //necesario? [Cristian: Maybe maybe]
-        //NO SE PUEDE COMPARAR STRING CON CHAR MANO, ¿QUE SE HACE?
         Gato gato = cuadrantes[fila][columna];
-        if(String.valueOf(gato.getGato()[0][0]).equals("X")) {
+        int espaciosVacios = 0;
+
+        // Check X, O y libres horizontales
+        for(int i=0; i<3; i++){
+            if(String.valueOf(gato.getGato()[i][0]).equals("X") && 
+                String.valueOf(gato.getGato()[i][1]).equals("X") && 
+                String.valueOf(gato.getGato()[i][2]).equals("X")){
+                cuadrantes[fila][columna].setEstado("X");
+            }
+            if(String.valueOf(gato.getGato()[i][0]).equals("O") && 
+                String.valueOf(gato.getGato()[i][1]).equals("O") && 
+                String.valueOf(gato.getGato()[i][2]).equals("O")){
+                cuadrantes[fila][columna].setEstado("O");
+            }
+            if(String.valueOf(gato.getGato()[i][0]).equals(" ") || 
+                String.valueOf(gato.getGato()[i][1]).equals(" ") || 
+                String.valueOf(gato.getGato()[i][2]).equals(" ")){
+                espaciosVacios += 1;
+            }
         }
-        //cuadrantes[fila][columna].setEstado(null);
-        //logica de bloquear cuadrante -> gato.getEstado
+
+        // Check X y O verticales
+        for(int j=0; j<3; j++){
+            if(String.valueOf(gato.getGato()[0][j]).equals("X") && 
+                String.valueOf(gato.getGato()[1][j]).equals("X") && 
+                String.valueOf(gato.getGato()[2][j]).equals("X")){
+                cuadrantes[fila][columna].setEstado("X");
+            }
+            if(String.valueOf(gato.getGato()[0][j]).equals("O") && 
+                String.valueOf(gato.getGato()[1][j]).equals("O") && 
+                String.valueOf(gato.getGato()[2][j]).equals("O")){
+                cuadrantes[fila][columna].setEstado("O");
+            }
+        }
+
+        // Check diagonal principal
+        if(String.valueOf(gato.getGato()[0][0]).equals("X") && 
+            String.valueOf(gato.getGato()[1][1]).equals("X") && 
+            String.valueOf(gato.getGato()[2][2]).equals("X")){
+            cuadrantes[fila][columna].setEstado("X");
+        }
+        if(String.valueOf(gato.getGato()[0][0]).equals("O") && 
+            String.valueOf(gato.getGato()[1][1]).equals("O") && 
+            String.valueOf(gato.getGato()[2][2]).equals("O")){
+            cuadrantes[fila][columna].setEstado("O");
+        }
+
+        // Check diagonal secundaria
+        if(String.valueOf(gato.getGato()[0][2]).equals("X") && 
+            String.valueOf(gato.getGato()[1][1]).equals("X") && String.valueOf(gato.getGato()[2][0]).equals("X")){
+            cuadrantes[fila][columna].setEstado("X");
+        }
+        if(String.valueOf(gato.getGato()[0][2]).equals("O") && 
+            String.valueOf(gato.getGato()[1][1]).equals("O") && String.valueOf(gato.getGato()[2][0]).equals("O")){
+            cuadrantes[fila][columna].setEstado("O");
+        }
+
+        // Si no hay espacios vacíos, es empate
+        if(espaciosVacios==0){
+            cuadrantes[fila][columna].setEstado("empate");
+        }
+        // Si nada se cumple se queda libre
     }
 
     public boolean hayCuadrantesLibres(){ //chequea si hay cuadrantes libres

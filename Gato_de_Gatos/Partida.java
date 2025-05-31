@@ -93,24 +93,90 @@ public class Partida{
     //Le pide al jugador las coordenadas del cuadrante que va a seleccionar
     public Gato seleccionarCuadranteDeJuego(){ 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("¡Elija el cuadrante!");
-        System.out.println("Fila de cuadrante a jugar: ");
-        int x = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Columna de cuadrante a jugar: ");
-        int y = scanner.nextInt();
-        scanner.nextLine();
+        int x=0;
+        int y=0;
+        boolean bandera=false; //siendo falsa es que la casilla no es valida
+        while(!bandera){
+            System.out.println("¡Elija el cuadrante!");
+            System.out.println("Fila de cuadrante a jugar: ");
+            x = scanner.nextInt()-1; //se espera que el usuario ingrese coordenadas del 1 en adelante
+            scanner.nextLine();
+            System.out.println("Columna de cuadrante a jugar: ");
+            y = scanner.nextInt()-1;
+            scanner.nextLine();
+            
+            if((x>=0 && x<=2 && y>=0 && y<=2) && cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //si las coordenadas son validas
+                bandera=true;
+            }
+            if(!bandera){
+                System.out.println("Cuadrante bloqueado, intente de nuevo\n");
+            }
+        }
+
         Gato gato = cuadrantes.getCuadrante(x,y);
         scanner.close();
         return gato;
     }
 
-    //public boolean verificarVictoria(){ //verifica si uno de los jugadores ganó
-        //logica para verificar victoria
-    //}------------------------------------------------
+    public boolean verificarVictoria(){ //verifica si uno de los jugadores ganó (a nivel cuadrantes!)
+        int cuadrantesLibres = 0;
+        // Chequear X, O y libres horizontales
+        for(int i = 0; i < 3; i++){
+            if(cuadrantes.getCuadrante(i, 0).getEstado().equals("X") && 
+                cuadrantes.getCuadrante(i, 1).getEstado().equals("X") && 
+                cuadrantes.getCuadrante(i, 2).getEstado().equals("X")){
+                return true;
+            }
+            if(cuadrantes.getCuadrante(i, 0).getEstado().equals("O") && 
+                cuadrantes.getCuadrante(i, 1).getEstado().equals("O") && 
+                cuadrantes.getCuadrante(i, 2).getEstado().equals("O")){
+                return true;
+            }
+            if(cuadrantes.getCuadrante(i, 0).getEstado().equals("libre") || 
+                cuadrantes.getCuadrante(i, 1).getEstado().equals("libre") || 
+                cuadrantes.getCuadrante(i, 2).getEstado().equals("libre")){
+                cuadrantesLibres += 1;
+            }
+        }
+        // Chequear X y O verticales
+        for(int j = 0; j < 3; j++){
+            if(cuadrantes.getCuadrante(0, j).getEstado().equals("X") && 
+                cuadrantes.getCuadrante(1, j).getEstado().equals("X") && 
+                cuadrantes.getCuadrante(2, j).getEstado().equals("X")){
+                return true;
+            }
+            if(cuadrantes.getCuadrante(0, j).getEstado().equals("O") && 
+                cuadrantes.getCuadrante(1, j).getEstado().equals("O") && 
+                cuadrantes.getCuadrante(2, j).getEstado().equals("O")){
+                return true;
+            }
+        }
+        // ChequearX y O diagonales
+        if(cuadrantes.getCuadrante(0, 0).getEstado().equals("X") && 
+            cuadrantes.getCuadrante(1, 1).getEstado().equals("X") && 
+            cuadrantes.getCuadrante(2, 2).getEstado().equals("X")){
+            return true;
+        }
+        if(cuadrantes.getCuadrante(0, 0).getEstado().equals("O") && 
+            cuadrantes.getCuadrante(1, 1).getEstado().equals("O") && 
+            cuadrantes.getCuadrante(2, 2).getEstado().equals("O")){
+            return true;
+        }
+        if(cuadrantes.getCuadrante(0, 2).getEstado().equals("X") && 
+            cuadrantes.getCuadrante(1, 1).getEstado().equals("X") && 
+            cuadrantes.getCuadrante(2, 0).getEstado().equals("X")){
+            return true;
+        }
+        if(cuadrantes.getCuadrante(0, 2).getEstado().equals("O") && 
+            cuadrantes.getCuadrante(1, 1).getEstado().equals("O") && 
+            cuadrantes.getCuadrante(2, 0).getEstado().equals("O")){
+            return true;
+        }
 
-    public void bloquearCuadrante(){ //bloquea el cuadrante de juego
-        //logica para bloquear el cuadrante
+        if(cuadrantesLibres == 0){
+            return true;
+        }
+        return false;
     }
 
     public void turnoJugadorX(int x, int y){ //turno del jugador X
@@ -120,27 +186,13 @@ public class Partida{
         }
 
         if(x==-1 || y==-1){ //unicamente al inicio de la partida
-            Scanner scanner = new Scanner(System.in);
-            boolean bandera=false; //siendo falsa es que la casilla no es valida
-            while(!bandera){
-                System.out.println("ingrese el cuadrante en el que quiere tirar [Formato: fila columna una a una]: \n");
-                x = scanner.nextInt()-1;
-                y = scanner.nextInt()-1;
-                
-                if((x>=0 && x<=2 && y>=0 && y<=2) && cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //si las coordenadas son validas
-                    bandera=true;
-                }
-                if(!bandera){
-                    System.out.println("la casilla está ocupada, intente de nuevo\n");
-                }
-            }
-            cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
+            cuadranteActualDeJuego=seleccionarCuadranteDeJuego();
 
-            jugadorX.hacerSeleccion(cuadranteActualDeJuego);
-                x=jugadorX.getFila();
-                y=jugadorX.getColumna();
-                notificarObservadores();
-                turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
+            jugadorX.hacerSeleccion(cuadranteActualDeJuego);//turno del jugador X
+            x=jugadorX.getFila();
+            y=jugadorX.getColumna();
+            notificarObservadores();
+            turnoJugadorO(x, y);//turno del jugador O
         }
 
         if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
@@ -149,6 +201,22 @@ public class Partida{
             x=jugadorX.getFila();
             y=jugadorX.getColumna();
             notificarObservadores();
+            cuadrantes.bloquearCuadrante(x, y); //ver si se hace un 3 en raya
+            if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                terminarPartida();
+            }
+            turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
+        }else{
+            System.out.println("El siguiente cuadrante está bloqueado\n");
+            cuadranteActualDeJuego=seleccionarCuadranteDeJuego();
+            jugadorX.hacerSeleccion(cuadranteActualDeJuego);
+            x=jugadorX.getFila();
+            y=jugadorX.getColumna();
+            notificarObservadores();
+            cuadrantes.bloquearCuadrante(x, y); //ver si se hace un 3 en raya
+            if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                terminarPartida();
+            }
             turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
         }
     }
@@ -164,10 +232,24 @@ public class Partida{
             jugadorO.hacerSeleccion(cuadranteActualDeJuego);
             x=jugadorO.getFila();
             y=jugadorO.getColumna();
-            System.out.println("1");
             notificarObservadores();
-            System.out.println("2");
+            cuadrantes.bloquearCuadrante(x, y); //ver si se hace un 3 en raya
+            if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                terminarPartida();
+            }
             turnoJugadorX(x, y); //le toca al siguiente en el cuadrante x , y
+        }else{
+            System.out.println("El siguiente cuadrante está bloqueado\n");
+            cuadranteActualDeJuego=seleccionarCuadranteDeJuego();
+            jugadorO.hacerSeleccion(cuadranteActualDeJuego);
+            x=jugadorO.getFila();
+            y=jugadorO.getColumna();
+            notificarObservadores();
+            cuadrantes.bloquearCuadrante(x, y); //ver si se hace un 3 en raya
+            if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                terminarPartida();
+            }
+            turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
         }
     }
 
@@ -180,7 +262,7 @@ public class Partida{
     }
 
     public void notificarObservadores(){
-        System.err.println("notificando");
+        System.out.println("notificando");
         for(Observador observador : this.observadores){
             observador.actualizar(cuadrantes); System.err.println("notificados");
         }
