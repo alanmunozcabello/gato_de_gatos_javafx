@@ -114,7 +114,6 @@ public class Partida{
         }
 
         Gato gato = cuadrantes.getCuadrante(x,y);
-        scanner.close();
         return gato;
     }
 
