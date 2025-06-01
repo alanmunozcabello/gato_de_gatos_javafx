@@ -30,31 +30,34 @@ public class Main {
                     scanner.nextLine();
                     switch (opcion) {
                         case 1:
-                            System.out.print("Ingrese su nombre:");
+                            System.out.print("Ingrese su nombre: ");
                             String nombreA = scanner.nextLine();
                             Jugador jugadorA = new Jugador(nombreA);
-                            Jugador botFacil = new Jugador("BotFacil");
+                            botFacil botFacil = new botFacil('O');
                             partida.Inicializar(jugadorA, botFacil, cuadrantes);
+                            partida.setJugadores(jugadorA, botFacil);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
                             break;
                         case 2:
-                            System.out.print("Ingrese su nombre:");
+                            System.out.print("Ingrese su nombre: ");
                             String nombreB = scanner.nextLine();
                             Jugador jugadorB = new Jugador(nombreB);
-                            Jugador botDificil = new Jugador("BotDificil");
+                            botDificil botDificil = new botDificil('O');
                             partida.Inicializar(jugadorB, botDificil, cuadrantes);
+                            partida.setJugadores(jugadorB, botDificil);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
                             break;
                         case 3:
-                            System.out.print("Jugador 1 ingrese su nombre:");
+                            System.out.print("Jugador 1 ingrese su nombre: ");
                             String nombreJ1 = scanner.nextLine();
                             Jugador jugador1 = new Jugador(nombreJ1);
-                            System.out.print("Jugador 2 ingrese su nombre:");
+                            System.out.print("Jugador 2 ingrese su nombre: ");
                             String nombreJ2 = scanner.nextLine();
                             Jugador jugador2 = new Jugador(nombreJ2);
                             partida.Inicializar(jugador1, jugador2, cuadrantes);
+                            partida.setJugadores(jugador1, jugador2);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
                             break;
@@ -69,6 +72,7 @@ public class Main {
                     System.out.println("Saliendo...");
                     return;
                 default:
+                    System.out.println("Opción inválida, intentelo de nuevo");
                     break;
             }
         }

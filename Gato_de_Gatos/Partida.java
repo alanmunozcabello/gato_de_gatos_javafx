@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.Thread;
 public class Partida{
     private static Partida instance;
     private int movimientosJ1;
@@ -46,22 +47,47 @@ public class Partida{
             //lanza el jugador1
             System.out.println("¡Tira el jugador 1!\n");
             dadoJ1=dados.tirarDados();
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             System.out.println("El jugador 1 consigue ¡"+dadoJ1+"!");
             //lanza el jugador2
             System.out.println("¡Tira el jugador 2!\n");
             dadoJ2=dados.tirarDados();
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             System.out.println("El jugador 2 consigue ¡"+dadoJ2+"!");
             if(dadoJ1==dadoJ2){
                 System.out.println("¡Empate... se hará otra ronda de dados!");
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
             }
         }
         if(dadoJ1>dadoJ2){
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             System.out.println("¡El jugador 1 será X!");
             //se quedan tal cual
             jugadorX.setSimbolo('X');
             jugadorO.setSimbolo('O');
         }
         if(dadoJ1<dadoJ2){
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             System.out.println("¡El jugador 2 será X!");
             Jugador tempJ1=jugadorX; //se le da al jugador 2 la X
             jugadorX=jugadorO;
@@ -71,6 +97,7 @@ public class Partida{
         }
         //--------------------------------------------------------------------------
         //Dar comienzo a los turnos
+        notificarObservadores();
         turnoJugadorX(-1, -1);
     }
 
@@ -119,7 +146,7 @@ public class Partida{
 
     public boolean verificarVictoria(){ //verifica si uno de los jugadores ganó (a nivel cuadrantes!)
         int cuadrantesLibres = 0;
-        // Chequear X, O y libres horizontales
+        // Chequear X, O y horizontales
         for(int i = 0; i < 3; i++){
             if(cuadrantes.getCuadrante(i, 0).getEstado().equals("X") && 
                 cuadrantes.getCuadrante(i, 1).getEstado().equals("X") && 
@@ -130,11 +157,6 @@ public class Partida{
                 cuadrantes.getCuadrante(i, 1).getEstado().equals("O") && 
                 cuadrantes.getCuadrante(i, 2).getEstado().equals("O")){
                 return true;
-            }
-            if(cuadrantes.getCuadrante(i, 0).getEstado().equals("libre") || 
-                cuadrantes.getCuadrante(i, 1).getEstado().equals("libre") || 
-                cuadrantes.getCuadrante(i, 2).getEstado().equals("libre")){
-                cuadrantesLibres += 1;
             }
         }
         // Chequear X y O verticales
@@ -150,7 +172,7 @@ public class Partida{
                 return true;
             }
         }
-        // ChequearX y O diagonales
+        // Chequear X y O diagonales
         if(cuadrantes.getCuadrante(0, 0).getEstado().equals("X") && 
             cuadrantes.getCuadrante(1, 1).getEstado().equals("X") && 
             cuadrantes.getCuadrante(2, 2).getEstado().equals("X")){
@@ -170,6 +192,14 @@ public class Partida{
             cuadrantes.getCuadrante(1, 1).getEstado().equals("O") && 
             cuadrantes.getCuadrante(2, 0).getEstado().equals("O")){
             return true;
+        }
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(cuadrantes.getCuadrante(i, j).getEstado().equals("libre")){
+                    cuadrantesLibres++;
+                }
+            }
         }
 
         if(cuadrantesLibres == 0){
@@ -197,10 +227,10 @@ public class Partida{
         if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
             cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
             jugadorX.hacerSeleccion(cuadranteActualDeJuego);
+            cuadrantes.bloquearCuadrante(x, y);
             x=jugadorX.getFila();
             y=jugadorX.getColumna();
             notificarObservadores();
-            cuadrantes.bloquearCuadrante(x, y); //ver si se hace un 3 en raya
             if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                 terminarPartida();
             }
@@ -209,10 +239,10 @@ public class Partida{
             System.out.println("El siguiente cuadrante está bloqueado\n");
             cuadranteActualDeJuego=seleccionarCuadranteDeJuego();
             jugadorX.hacerSeleccion(cuadranteActualDeJuego);
+            cuadrantes.bloquearCuadrante(x, y);
             x=jugadorX.getFila();
             y=jugadorX.getColumna();
             notificarObservadores();
-            cuadrantes.bloquearCuadrante(x, y); //ver si se hace un 3 en raya
             if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                 terminarPartida();
             }
@@ -229,10 +259,10 @@ public class Partida{
         if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
             cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
             jugadorO.hacerSeleccion(cuadranteActualDeJuego);
+            cuadrantes.bloquearCuadrante(x, y);
             x=jugadorO.getFila();
             y=jugadorO.getColumna();
             notificarObservadores();
-            cuadrantes.bloquearCuadrante(x, y); //ver si se hace un 3 en raya
             if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                 terminarPartida();
             }
@@ -241,10 +271,10 @@ public class Partida{
             System.out.println("El siguiente cuadrante está bloqueado\n");
             cuadranteActualDeJuego=seleccionarCuadranteDeJuego();
             jugadorO.hacerSeleccion(cuadranteActualDeJuego);
+            cuadrantes.bloquearCuadrante(x, y);
             x=jugadorO.getFila();
             y=jugadorO.getColumna();
             notificarObservadores();
-            cuadrantes.bloquearCuadrante(x, y); //ver si se hace un 3 en raya
             if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                 terminarPartida();
             }
@@ -257,14 +287,11 @@ public class Partida{
             this.observadores=new ArrayList<>();
         }
         this.observadores.add(observador);
-        System.out.println("observador añadido");
     }
 
     public void notificarObservadores(){
-        System.out.println("notificando");
         for(Observador observador : this.observadores){
-            observador.actualizar(cuadrantes); System.err.println("notificados");
+            observador.actualizar(cuadrantes);
         }
-        System.out.println("+-+-+-+-+-+-+");
     }
 }

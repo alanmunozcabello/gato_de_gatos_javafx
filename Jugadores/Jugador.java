@@ -39,7 +39,7 @@ public class Jugador{
         Scanner scanner = new Scanner(System.in);
         boolean bandera=false; //siendo falsa es que la casilla no es valida
         while(!bandera){
-            System.out.println("ingrese la casilla en la que quiere tirar [Formato: fila columna una a una]: \n");
+            System.out.print("ingrese la casilla en la que quiere tirar [Formato: fila columna una a una]: ");
             fila = scanner.nextInt() -1;
             scanner.nextLine();//consumir el salto de linea
             columna = scanner.nextInt() -1;
@@ -73,13 +73,6 @@ public class Jugador{
         }
         double winRate=this.partidasGanadas/this.partidasJugadas*100;//*100 para que sea un porcentaje
         return winRate;
-    }
-    public static void dormir(){
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
     }
 
     //para cambiar el simbolo

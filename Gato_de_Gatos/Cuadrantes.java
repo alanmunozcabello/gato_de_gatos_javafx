@@ -10,70 +10,61 @@ public class Cuadrantes{
         }
     }
 
-    public void bloquearCuadrante(int fila, int columna){ //necesario? [Cristian: Maybe maybe]
+    public void bloquearCuadrante(int fila, int columna){
         Gato gato = cuadrantes[fila][columna];
-        int espaciosVacios = 0;
-
-        // Check X, O y libres horizontales
+        char[][] tablero = gato.getGato();
+        boolean bloqueado = false;
+        
+        // Chequea filas y columnas
         for(int i=0; i<3; i++){
-            if(String.valueOf(gato.getGato()[i][0]).equals("X") && 
-                String.valueOf(gato.getGato()[i][1]).equals("X") && 
-                String.valueOf(gato.getGato()[i][2]).equals("X")){
+            if(tablero[i][0] == 'X' && tablero[i][1] == 'X' && tablero[i][2] == 'X'){
                 cuadrantes[fila][columna].setEstado("X");
+                bloqueado = true;
             }
-            if(String.valueOf(gato.getGato()[i][0]).equals("O") && 
-                String.valueOf(gato.getGato()[i][1]).equals("O") && 
-                String.valueOf(gato.getGato()[i][2]).equals("O")){
+            if(tablero[i][0] == 'O' && tablero[i][1] == 'O' && tablero[i][2] == 'O'){
                 cuadrantes[fila][columna].setEstado("O");
+                bloqueado = true;
             }
-            if(String.valueOf(gato.getGato()[i][0]).equals(" ") || 
-                String.valueOf(gato.getGato()[i][1]).equals(" ") || 
-                String.valueOf(gato.getGato()[i][2]).equals(" ")){
-                espaciosVacios += 1;
-            }
-        }
-
-        // Check X y O verticales
-        for(int j=0; j<3; j++){
-            if(String.valueOf(gato.getGato()[0][j]).equals("X") && 
-                String.valueOf(gato.getGato()[1][j]).equals("X") && 
-                String.valueOf(gato.getGato()[2][j]).equals("X")){
+            if(tablero[0][i] == 'X' && tablero[1][i] == 'X' && tablero[2][i] == 'X'){
                 cuadrantes[fila][columna].setEstado("X");
+                bloqueado = true;
             }
-            if(String.valueOf(gato.getGato()[0][j]).equals("O") && 
-                String.valueOf(gato.getGato()[1][j]).equals("O") && 
-                String.valueOf(gato.getGato()[2][j]).equals("O")){
+            if(tablero[0][i] == 'O' && tablero[1][i] == 'O' && tablero[2][i] == 'O'){
                 cuadrantes[fila][columna].setEstado("O");
+                bloqueado = true;
             }
         }
-
-        // Check diagonal principal
-        if(String.valueOf(gato.getGato()[0][0]).equals("X") && 
-            String.valueOf(gato.getGato()[1][1]).equals("X") && 
-            String.valueOf(gato.getGato()[2][2]).equals("X")){
+    
+        // Chequea diagonales
+        if(tablero[0][0] == 'X' && tablero[1][1] == 'X' && tablero[2][2] == 'X'){
             cuadrantes[fila][columna].setEstado("X");
+            bloqueado = true;
         }
-        if(String.valueOf(gato.getGato()[0][0]).equals("O") && 
-            String.valueOf(gato.getGato()[1][1]).equals("O") && 
-            String.valueOf(gato.getGato()[2][2]).equals("O")){
+        if(tablero[0][0] == 'O' && tablero[1][1] == 'O' && tablero[2][2] == 'O'){
             cuadrantes[fila][columna].setEstado("O");
+            bloqueado = true;
         }
-
-        // Check diagonal secundaria
-        if(String.valueOf(gato.getGato()[0][2]).equals("X") && 
-            String.valueOf(gato.getGato()[1][1]).equals("X") && String.valueOf(gato.getGato()[2][0]).equals("X")){
+        if(tablero[0][2] == 'X' && tablero[1][1] == 'X' && tablero[2][0] == 'X'){
             cuadrantes[fila][columna].setEstado("X");
+            bloqueado = true;
         }
-        if(String.valueOf(gato.getGato()[0][2]).equals("O") && 
-            String.valueOf(gato.getGato()[1][1]).equals("O") && String.valueOf(gato.getGato()[2][0]).equals("O")){
+        if(tablero[0][2] == 'O' && tablero[1][1] == 'O' && tablero[2][0] == 'O'){
             cuadrantes[fila][columna].setEstado("O");
+            bloqueado = true;
         }
-
-        // Si no hay espacios vacíos, es empate
-        if(espaciosVacios==0){
+    
+        // Si no está bloqueado y no hay espacios vacíos, es empate
+        int espaciosVacios = 0;
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                if(tablero[i][j] == ' '){
+                    espaciosVacios++;
+                }
+            }
+        }
+        if(espaciosVacios == 0 && !bloqueado){
             cuadrantes[fila][columna].setEstado("empate");
         }
-        // Si nada se cumple se queda libre
     }
 
     public boolean hayCuadrantesLibres(){ //chequea si hay cuadrantes libres
@@ -90,7 +81,7 @@ public class Cuadrantes{
     }
 
     public void mostrarCoordsCuadrantesLibres(int x, int y){// mostrar al usuario las coordenadas de los cuadrantes libres
-        System.out.println("Coordenadas de los cuadrantes libres: "+x+1+","+y+1);
+        System.out.println("Coordenadas de los cuadrantes libres: "+(x+1)+","+(y+1));
     }
 
     public void terminarJuego(){ //termina el juego

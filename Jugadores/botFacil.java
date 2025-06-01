@@ -5,14 +5,18 @@ public class botFacil extends Jugador {
 
     @Override
     public void hacerSeleccion(Gato gato){
-        dormir();
+        try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         // Selecciona una casilla aleatoria y se escoje cuando sean validas
         int fila=0; 
         int columna=0;
         boolean bandera=false; //siendo falsa es que la casilla no es valida
         while(!bandera){
-            fila= (int) (Math.random() * 3)-1;
-            columna= (int) (Math.random() * 3)-1;
+            fila= (int) (Math.random() * 3);
+            columna= (int) (Math.random() * 3);
             bandera=gato.verificarCasillaOcupada(fila, columna);//si la casilla es valida se saldra del ciclo
         }
         this.fila=fila;

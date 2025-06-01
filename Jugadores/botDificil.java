@@ -5,8 +5,12 @@ public class botDificil extends Jugador {
 
     @Override
     public void hacerSeleccion(Gato gato) { //se recibe el cuadarnte de juego actual para hacer la seleccion
-        dormir();
         // Obtener el estado actual del tablero
+        try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         char[][] tablero = gato.getGato();
 
         int[] mejorJugada = obtenerMejorMovimiento(tablero, this.simbolo);
