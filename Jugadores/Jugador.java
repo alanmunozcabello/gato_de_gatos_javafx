@@ -33,6 +33,32 @@ public class Jugador{
         this.partidasPerdidas = partidasPerdidas;
     }
 
+    //Le pide al jugador las coordenadas del cuadrante que va a seleccionar
+    public Gato seleccionarCuadranteDeJuego(Cuadrantes cuadrantes){ 
+        Scanner scanner = new Scanner(System.in);
+        int x=0;
+        int y=0;
+        boolean bandera=false; //siendo falsa es que la casilla no es valida
+        while(!bandera){
+            System.out.println("¡Elija el cuadrante!");
+            System.out.println("Fila de cuadrante a jugar: ");
+            x = scanner.nextInt()-1; //se espera que el usuario ingrese coordenadas del 1 en adelante
+            scanner.nextLine();
+            System.out.println("Columna de cuadrante a jugar: ");
+            y = scanner.nextInt()-1;
+            scanner.nextLine();
+            
+            if((x>=0 && x<=2 && y>=0 && y<=2) && cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //si las coordenadas son validas
+                bandera=true;
+            }
+            if(!bandera){
+                System.out.println("Cuadrante bloqueado, intente de nuevo\n");
+            }
+        }
+        Gato gato = cuadrantes.getCuadrante(x,y);
+        return gato;
+    }
+
     public void hacerSeleccion(Gato gato){ //recibe el gato para hacer la seleccion
         int fila=0;
         int columna=0;

@@ -71,6 +71,7 @@ public class Cuadrantes{
         boolean bandera=false;
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
+                System.out.println(this.cuadrantes[i][j].getEstado() + " " + i + "," + j);
                 if(this.cuadrantes[i][j].getEstado().equals("libre")){ //hay a lo menos un cuadrante libre
                     mostrarCoordsCuadrantesLibres(i, j);
                     bandera=true;
