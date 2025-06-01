@@ -5,6 +5,7 @@ public class botFacil extends Jugador {
 
     @Override
     public void hacerSeleccion(Gato gato){
+        dormir();
         // Selecciona una casilla aleatoria y se escoje cuando sean validas
         int fila=0; 
         int columna=0;

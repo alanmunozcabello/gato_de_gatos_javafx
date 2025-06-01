@@ -5,6 +5,7 @@ public class botDificil extends Jugador {
 
     @Override
     public void hacerSeleccion(Gato gato) { //se recibe el cuadarnte de juego actual para hacer la seleccion
+        dormir();
         // Obtener el estado actual del tablero
         char[][] tablero = gato.getGato();
 

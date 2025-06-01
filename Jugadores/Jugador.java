@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.Thread;
 
 public class Jugador{
     String nombre;
@@ -72,6 +73,13 @@ public class Jugador{
         }
         double winRate=this.partidasGanadas/this.partidasJugadas*100;//*100 para que sea un porcentaje
         return winRate;
+    }
+    public static void dormir(){
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
     //para cambiar el simbolo
