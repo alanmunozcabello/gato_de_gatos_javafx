@@ -4,12 +4,13 @@ import java.lang.Thread;
 public class Partida{
     private static Partida instance;
     private boolean partidaEnCurso;
-    private int movimientosJ1;
-    private int movimientosJ2;
+    private int movimientosJX;
+    private int movimientosJO;
     private Cuadrantes cuadrantes;
     private Gato cuadranteActualDeJuego;
     private Jugador jugadorX;
     private Jugador jugadorO;
+    private Jugador jugadorGanador;
     private ArrayList<Observador> observadores;
 
     private Partida(){
@@ -26,8 +27,8 @@ public class Partida{
         this.jugadorX = jugador1;
         this.jugadorO = jugador2;
         this.cuadrantes = cuadrantes;
-        this.movimientosJ1 = 0;
-        this.movimientosJ2 = 0;
+        this.movimientosJX = 0;
+        this.movimientosJO = 0;
         // this.cuadranteActualDeJuego = cuadrantes.getCuadrante(0);
         this.observadores = new ArrayList<>();
     }
@@ -109,11 +110,11 @@ public class Partida{
     }
 
     //metodos para aumentar los movimientos de los jugadores
-    public void aumentarMovimientosJ1(){
-        this.movimientosJ1++;
+    public void aumentarMovimientosJX(){
+        this.movimientosJX++;
     }
-    public void aumentarMovimientosJ2(){
-        this.movimientosJ2++;
+    public void aumentarMovimientosJO(){
+        this.movimientosJO++;
     }
 
     public void setCuadranteActualDeJuego(int x, int y){
@@ -204,6 +205,8 @@ public class Partida{
                 x=jugadorX.getFila();
                 y=jugadorX.getColumna();
                 notificarObservadores();
+                aumentarMovimientosJX();
+                System.out.println("Movimientos jugador X: " + movimientosJX);
                 turnoJugadorO(x, y);//turno del jugador O
                 return;
             }
@@ -219,6 +222,8 @@ public class Partida{
                 x=jugadorX.getFila();
                 y=jugadorX.getColumna();
                 notificarObservadores();
+                aumentarMovimientosJX();
+                System.out.println("Movimientos jugador X: " + movimientosJX);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     terminarPartida();
                     return;
@@ -237,6 +242,8 @@ public class Partida{
                 x=jugadorX.getFila();
                 y=jugadorX.getColumna();
                 notificarObservadores();
+                aumentarMovimientosJX();
+                System.out.println("Movimientos jugador X: " + movimientosJX);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     terminarPartida();
                     return;
@@ -267,6 +274,8 @@ public class Partida{
                 x=jugadorO.getFila();
                 y=jugadorO.getColumna();
                 notificarObservadores();
+                aumentarMovimientosJO();
+                System.out.println("Movimientos jugador O: " + movimientosJO);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     terminarPartida();
                     return;
@@ -285,6 +294,8 @@ public class Partida{
                 x=jugadorO.getFila();
                 y=jugadorO.getColumna();
                 notificarObservadores();
+                aumentarMovimientosJO();
+                System.out.println("Movimientos jugador O: " + movimientosJO);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     terminarPartida();
                     return;
@@ -308,5 +319,10 @@ public class Partida{
         for(Observador observador : this.observadores){
             observador.actualizar(cuadrantes);
         }
+    }
+    @Override
+    public String toString() {
+        return "\n[Jugador X: " + jugadorX.getNombre() + "\nJugador O: " + jugadorO.getNombre() + "\nMovimientos Jugador X: " 
+        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: " + jugadorGanador;
     }
 }

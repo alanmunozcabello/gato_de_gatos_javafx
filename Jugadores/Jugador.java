@@ -6,7 +6,8 @@ public class Jugador{
     char simbolo;
     int partidasJugadas;
     int partidasGanadas;
-    int partidasPerdidas; 
+    int partidasPerdidas;
+    int partidasEmpatadas;
     int fila, columna;
     boolean gana;
     boolean surrender;
@@ -100,6 +101,9 @@ public class Jugador{
     public void aumentarPartidasPerdidas(){ //-> se llama al final de la partida si pierde
         this.partidasPerdidas=this.partidasPerdidas+1;
     }
+    public void aumentarPartidasEmpatadas(){
+        this.partidasEmpatadas=this.partidasEmpatadas+1;
+    }
     //metodo para calcular el winrate
     public double calcularWinRate(){
         if(this.partidasJugadas==0){ //si no se usa este if no s epoddría calcular el winrate -> divición entre 0
@@ -131,6 +135,9 @@ public class Jugador{
     }
     public int getPartidasPerdidas(){
         return this.partidasPerdidas;
+    }
+    public int getPartidasEmpatadas() {
+        return partidasEmpatadas;
     }
     public String getNombre() {
         return nombre;

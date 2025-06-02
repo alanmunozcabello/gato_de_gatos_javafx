@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Jugador> jugadores;
         ArrayList<Partida> partidas;
+        boolean bandera;
         Partida partida = Partida.getInstance();
         Cuadrantes cuadrantes=new Cuadrantes();
         Observador consola=new VistaEnConsola();
@@ -32,8 +33,30 @@ public class Main {
                         case 1:
                             System.out.print("Ingrese su nombre: ");
                             String nombreA = scanner.nextLine();
-                            Jugador jugadorA = new Jugador(nombreA);
-                            botFacil botFacil = new botFacil('O');
+                            Jugador jugadorA = null;
+                            bandera = false;
+                            for(Jugador jugador : jugadores){
+                                if(nombreA.equals(jugador.getNombre())){
+                                    jugadorA = jugador;
+                                    bandera = true;
+                                    break;
+                                }
+                            }
+                            if(!bandera){
+                                jugadorA = new Jugador(nombreA);
+                            }
+                            bandera = false;
+                            botFacil botFacil = null;
+                            for(Jugador bot : jugadores){
+                                if(bot instanceof botFacil){
+                                    botFacil = (botFacil) bot;
+                                    bandera = true;
+                                    break;
+                                }
+                            }
+                            if(!bandera){
+                                botFacil = new botFacil('X');
+                            }
                             partida.Inicializar(jugadorA, botFacil, cuadrantes);
                             partida.setJugadores(jugadorA, botFacil);
                             partida.agregarObservador(consola);
@@ -42,8 +65,30 @@ public class Main {
                         case 2:
                             System.out.print("Ingrese su nombre: ");
                             String nombreB = scanner.nextLine();
-                            Jugador jugadorB = new Jugador(nombreB);
-                            botDificil botDificil = new botDificil('O');
+                            Jugador jugadorB = null;
+                            bandera = false;
+                            for(Jugador jugador : jugadores){
+                                if(nombreB.equals(jugador.getNombre())){
+                                    jugadorB = jugador;
+                                    bandera = true;
+                                    break;
+                                }
+                            }
+                            if(!bandera){
+                                jugadorA = new Jugador(nombreB);
+                            }
+                            bandera = false;
+                            botDificil botDificil = null;
+                            for(Jugador bot : jugadores){
+                                if(bot instanceof botDificil){
+                                    botDificil = (botDificil) bot;
+                                    bandera = true;
+                                    break;
+                                }
+                            }
+                            if(!bandera){
+                                botDificil = new botDificil('X');
+                            }
                             partida.Inicializar(jugadorB, botDificil, cuadrantes);
                             partida.setJugadores(jugadorB, botDificil);
                             partida.agregarObservador(consola);
@@ -52,10 +97,32 @@ public class Main {
                         case 3:
                             System.out.print("Jugador 1 ingrese su nombre: ");
                             String nombreJ1 = scanner.nextLine();
-                            Jugador jugador1 = new Jugador(nombreJ1);
+                            Jugador jugador1 = null;
+                            bandera = false;
+                            for(Jugador jugador : jugadores){
+                                if(nombreJ1.equals(jugador.getNombre())){
+                                    jugador1 = jugador;
+                                    bandera = true;
+                                    break;
+                                }
+                            }
+                            if(!bandera){
+                                jugador1 = new Jugador(nombreJ1);
+                            }
                             System.out.print("Jugador 2 ingrese su nombre: ");
                             String nombreJ2 = scanner.nextLine();
-                            Jugador jugador2 = new Jugador(nombreJ2);
+                            Jugador jugador2 = null;
+                            bandera = false;
+                            for(Jugador jugador : jugadores){
+                                if(nombreJ2.equals(jugador.getNombre())){
+                                    jugador2 = jugador;
+                                    bandera = true;
+                                    break;
+                                }
+                            }
+                            if(!bandera){
+                                jugador2 = new Jugador(nombreJ2);
+                            }
                             partida.Inicializar(jugador1, jugador2, cuadrantes);
                             partida.setJugadores(jugador1, jugador2);
                             partida.agregarObservador(consola);

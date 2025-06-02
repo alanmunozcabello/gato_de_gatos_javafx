@@ -1,6 +1,7 @@
 public class botDificil extends Jugador {
     public botDificil(char simbolo){
         super(simbolo);
+        this.nombre = "botDificil";
     }
 
     @Override
