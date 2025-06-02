@@ -59,11 +59,17 @@ public class Jugador{
         return gato;
     }
 
-    public void hacerSeleccion(Gato gato){ //recibe el gato para hacer la seleccion
+    public boolean hacerSeleccion(Gato gato){ //recibe el gato para hacer la seleccion
         int fila=0;
         int columna=0;
         Scanner scanner = new Scanner(System.in);
         boolean bandera=false; //siendo falsa es que la casilla no es valida
+        String lineaSig;
+        System.out.print("Presione cualquier tecla para continuar (escriba surrender si desea rendirse): ");
+        lineaSig = scanner.nextLine();
+        if(lineaSig.equals("surrender")){
+            return true;
+        }
         while(!bandera){
             System.out.print("Ingrese la fila donde desea marcar: ");
             fila = scanner.nextInt() -1;
@@ -82,6 +88,7 @@ public class Jugador{
         gato.marcarSeleccion(fila, columna, simbolo); //marca el simbolo en la casilla valida
         this.fila = fila;
         this.columna = columna;
+        return false;
     }
     //para aumentar el numero de partidas jugadas -> se llama al inicio de cada partida
     public void aumentarPartidasJugadas(){

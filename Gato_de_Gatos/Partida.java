@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.lang.Thread;
 public class Partida{
     private static Partida instance;
+    private boolean partidaEnCurso;
     private int movimientosJ1;
     private int movimientosJ2;
     private Cuadrantes cuadrantes;
@@ -39,6 +40,7 @@ public class Partida{
     public void comenzarPartida(){ // iniciar la partida
         //PREVIAMENTE A JUGAR------------------------------------------------------
         //ver quien es X y quien es O
+        partidaEnCurso = true;
         Dados dados=new Dados();
         int dadoJ1=0;
         int dadoJ2=0;
@@ -103,6 +105,7 @@ public class Partida{
 
     public void terminarPartida(){ // darle cierre a la partida la partida
         System.out.println("partida terminada\n");
+        partidaEnCurso = false;
     }
 
     //metodos para aumentar los movimientos de los jugadores
@@ -184,106 +187,114 @@ public class Partida{
     }
 
     public void turnoJugadorX(int x, int y){ //turno del jugador X
-        System.out.println("TURNO X--------------------------------");
-        if(!cuadrantes.hayCuadrantesLibres()){
-            terminarPartida();
-            return;
-        }
-        Scanner scanner = new Scanner(System.in);
-        String lineaSig;
-        System.out.print("Presione cualquier tecla para continuar (escriba surrender si desea rendirse): ");
-        lineaSig = scanner.nextLine();
-        if(lineaSig.equals("surrender")){
-            jugadorX.surrender = true;
-            jugadorO.gana = true;
-            terminarPartida();
-            return;
-        }
-        if(x==-1 || y==-1){ //unicamente al inicio de la partida
-            //jugadorX.surrender = true;
-            cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
-            jugadorX.hacerSeleccion(cuadranteActualDeJuego);//turno del jugador X
-            x=jugadorX.getFila();
-            y=jugadorX.getColumna();
-            notificarObservadores();
-            turnoJugadorO(x, y);//turno del jugador O
-        }
-
-        if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
-            cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
-            jugadorX.hacerSeleccion(cuadranteActualDeJuego);
-            cuadrantes.bloquearCuadrante(x, y);
-            x=jugadorX.getFila();
-            y=jugadorX.getColumna();
-            notificarObservadores();
-            if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+        if(partidaEnCurso){
+            System.out.println("TURNO X--------------------------------");
+            if(!cuadrantes.hayCuadrantesLibres()){
                 terminarPartida();
                 return;
+            }
+            if(x==-1 || y==-1){ //unicamente al inicio de la partida
+                //jugadorX.surrender = true;
+                cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
+                jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);//turno del jugador X
+                if(jugadorX.surrender){
+                    terminarPartida();
+                    return;
+                }
+                x=jugadorX.getFila();
+                y=jugadorX.getColumna();
+                notificarObservadores();
+                turnoJugadorO(x, y);//turno del jugador O
+            }
+
+            if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
+                cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
+                jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
+                if(jugadorX.surrender){
+                    terminarPartida();
+                    return;
+                }
+                cuadrantes.bloquearCuadrante(x, y);
+                x=jugadorX.getFila();
+                y=jugadorX.getColumna();
+                notificarObservadores();
+                if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                    terminarPartida();
+                    return;
+                }else{
+                    turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
+                }
             }else{
-                turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
+                System.out.println("El siguiente cuadrante está bloqueado\n");
+                cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
+                jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
+                if(jugadorX.surrender){
+                    terminarPartida();
+                    return;
+                }
+                cuadrantes.bloquearCuadrante(x, y);
+                x=jugadorX.getFila();
+                y=jugadorX.getColumna();
+                notificarObservadores();
+                if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                    terminarPartida();
+                    return;
+                }else{
+                    turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
+                }
             }
         }else{
-            System.out.println("El siguiente cuadrante está bloqueado\n");
-            cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
-            jugadorX.hacerSeleccion(cuadranteActualDeJuego);
-            cuadrantes.bloquearCuadrante(x, y);
-            x=jugadorX.getFila();
-            y=jugadorX.getColumna();
-            notificarObservadores();
-            if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
-                terminarPartida();
-                return;
-            }else{
-                turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
-            }
+            return;
         }
     }
 
     public void turnoJugadorO(int x, int y){ //turno del jugador O
-        System.out.println("TURNO O--------------------------------");
-        if(!cuadrantes.hayCuadrantesLibres()){
-            terminarPartida();
-            return;
-        }
-        Scanner scanner = new Scanner(System.in);
-        String lineaSig;
-        System.out.print("Presione cualquier tecla para continuar (escriba surrender si desea rendirse): ");
-        lineaSig = scanner.nextLine();
-        if(lineaSig.equals("surrender")){
-            jugadorO.surrender = true;
-            jugadorX.gana = true;
-            terminarPartida();
-            return;
-        }
-        if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
-            cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
-            jugadorO.hacerSeleccion(cuadranteActualDeJuego);
-            cuadrantes.bloquearCuadrante(x, y);
-            x=jugadorO.getFila();
-            y=jugadorO.getColumna();
-            notificarObservadores();
-            if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+        if(partidaEnCurso){
+            System.out.println("TURNO O--------------------------------");
+            if(!cuadrantes.hayCuadrantesLibres()){
                 terminarPartida();
                 return;
-            }else{
-                turnoJugadorX(x, y); //le toca al siguiente en el cuadrante x , y
             }
-        }else{
-            System.out.println("El siguiente cuadrante está bloqueado\n");
-            cuadranteActualDeJuego=jugadorO.seleccionarCuadranteDeJuego(cuadrantes);
-            jugadorO.hacerSeleccion(cuadranteActualDeJuego);
-            cuadrantes.bloquearCuadrante(x, y);
-            x=jugadorO.getFila();
-            y=jugadorO.getColumna();
-            notificarObservadores();
-            if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
-                terminarPartida();
-                return;
+            if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
+                cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
+                jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
+                if(jugadorO.surrender){
+                    terminarPartida();
+                    return;
+                }
+                cuadrantes.bloquearCuadrante(x, y);
+                x=jugadorO.getFila();
+                y=jugadorO.getColumna();
+                notificarObservadores();
+                if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                    terminarPartida();
+                    return;
+                }else{
+                    turnoJugadorX(x, y); //le toca al siguiente en el cuadrante x , y
+                }
             }else{
-                turnoJugadorX(x, y); //le toca al siguiente en el cuadrante x , y
+                System.out.println("El siguiente cuadrante está bloqueado\n");
+                cuadranteActualDeJuego=jugadorO.seleccionarCuadranteDeJuego(cuadrantes);
+                jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
+                if(jugadorO.surrender){
+                    terminarPartida();
+                    return;
+                }
+                cuadrantes.bloquearCuadrante(x, y);
+                x=jugadorO.getFila();
+                y=jugadorO.getColumna();
+                notificarObservadores();
+                if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                    terminarPartida();
+                    return;
+                }else{
+                    turnoJugadorX(x, y); //le toca al siguiente en el cuadrante x , y
+                }
             }
-        }
+    }else{
+        return;
     }
+}
 
     public void agregarObservador(Observador observador){
         if(this.observadores==null){

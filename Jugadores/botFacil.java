@@ -20,7 +20,7 @@ public class botFacil extends Jugador {
     }
 
     @Override
-    public void hacerSeleccion(Gato gato){
+    public boolean hacerSeleccion(Gato gato){
         try {
                 Thread.sleep(2000);
             } catch (Exception e) {
@@ -38,5 +38,6 @@ public class botFacil extends Jugador {
         this.fila=fila;
         this.columna=columna;
         gato.marcarSeleccion(fila, columna, simbolo); //marca el simbolo en la casilla valida
+        return false;
     }
 }

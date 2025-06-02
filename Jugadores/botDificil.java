@@ -20,7 +20,7 @@ public class botDificil extends Jugador {
     }
 
     @Override
-    public void hacerSeleccion(Gato gato) { //se recibe el cuadarnte de juego actual para hacer la seleccion
+    public boolean hacerSeleccion(Gato gato) { //se recibe el cuadarnte de juego actual para hacer la seleccion
         // Obtener el estado actual del tablero
         try {
                 Thread.sleep(2000);
@@ -37,6 +37,7 @@ public class botDificil extends Jugador {
         gato.marcarSeleccion(fila, columna, this.simbolo);
         this.fila = fila;
         this.columna = columna;
+        return false;
     }
 
     // Minimax adaptado para el cuadrante actual de juego
