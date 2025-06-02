@@ -65,9 +65,10 @@ public class Jugador{
         Scanner scanner = new Scanner(System.in);
         boolean bandera=false; //siendo falsa es que la casilla no es valida
         while(!bandera){
-            System.out.print("ingrese la casilla en la que quiere tirar [Formato: fila columna una a una]: ");
+            System.out.print("Ingrese la fila donde desea marcar: ");
             fila = scanner.nextInt() -1;
             scanner.nextLine();//consumir el salto de linea
+            System.out.print("Ingrese la columna donde desea marcar: ");
             columna = scanner.nextInt() -1;
             scanner.nextLine();
             //verifica si la casilla es ocupada

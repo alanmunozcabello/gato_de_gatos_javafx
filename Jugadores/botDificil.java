@@ -25,7 +25,7 @@ public class botDificil extends Jugador {
         try {
                 Thread.sleep(2000);
             } catch (Exception e) {
-                System.out.println("Se fue a la verga: " + e);
+                System.out.println(e);
             }
         char[][] tablero = gato.getGato();
 

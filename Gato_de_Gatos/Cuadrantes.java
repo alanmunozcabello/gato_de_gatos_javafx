@@ -71,9 +71,8 @@ public class Cuadrantes{
         boolean bandera=false;
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
-                System.out.println(this.cuadrantes[i][j].getEstado() + " " + i + "," + j);
                 if(this.cuadrantes[i][j].getEstado().equals("libre")){ //hay a lo menos un cuadrante libre
-                    mostrarCoordsCuadrantesLibres(i, j);
+                    mostrarCoordsCuadrantesLibres(i, j, this.cuadrantes[i][j].getEstado());
                     bandera=true;
                 }
             }
@@ -81,8 +80,8 @@ public class Cuadrantes{
         return bandera; //no hay cuadrantes libres
     }
 
-    public void mostrarCoordsCuadrantesLibres(int x, int y){// mostrar al usuario las coordenadas de los cuadrantes libres
-        System.out.println("Coordenadas de los cuadrantes libres: "+(x+1)+","+(y+1));
+    public void mostrarCoordsCuadrantesLibres(int x, int y, String estado){// mostrar al usuario las coordenadas de los cuadrantes libres
+        System.out.println(estado + " " + (x+1)+","+(y+1));
     }
 
     public void terminarJuego(){ //termina el juego

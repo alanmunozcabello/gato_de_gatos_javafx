@@ -24,7 +24,7 @@ public class botFacil extends Jugador {
         try {
                 Thread.sleep(2000);
             } catch (Exception e) {
-                System.out.println("Se fue a la verga: " + e);
+                System.out.println(e);
             }
         // Selecciona una casilla aleatoria y se escoje cuando sean validas
         int fila=0; 

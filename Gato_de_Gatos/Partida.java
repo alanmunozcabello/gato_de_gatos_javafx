@@ -189,10 +189,19 @@ public class Partida{
             terminarPartida();
             return;
         }
-
+        Scanner scanner = new Scanner(System.in);
+        String lineaSig;
+        System.out.print("Presione cualquier tecla para continuar (escriba surrender si desea rendirse): ");
+        lineaSig = scanner.nextLine();
+        if(lineaSig.equals("surrender")){
+            jugadorX.surrender = true;
+            jugadorO.gana = true;
+            terminarPartida();
+            return;
+        }
         if(x==-1 || y==-1){ //unicamente al inicio de la partida
+            //jugadorX.surrender = true;
             cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
-
             jugadorX.hacerSeleccion(cuadranteActualDeJuego);//turno del jugador X
             x=jugadorX.getFila();
             y=jugadorX.getColumna();
@@ -236,7 +245,16 @@ public class Partida{
             terminarPartida();
             return;
         }
-
+        Scanner scanner = new Scanner(System.in);
+        String lineaSig;
+        System.out.print("Presione cualquier tecla para continuar (escriba surrender si desea rendirse): ");
+        lineaSig = scanner.nextLine();
+        if(lineaSig.equals("surrender")){
+            jugadorO.surrender = true;
+            jugadorX.gana = true;
+            terminarPartida();
+            return;
+        }
         if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
             cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
             jugadorO.hacerSeleccion(cuadranteActualDeJuego);
