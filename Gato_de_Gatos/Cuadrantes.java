@@ -74,6 +74,8 @@ public class Cuadrantes{
                 if(this.cuadrantes[i][j].getEstado().equals("libre")){ //hay a lo menos un cuadrante libre
                     mostrarCoordsCuadrantesLibres(i, j, this.cuadrantes[i][j].getEstado());
                     bandera=true;
+                }else{
+                    mostrarCoordsCuadrantesLibres(i, j, this.cuadrantes[i][j].getEstado());
                 }
             }
         }

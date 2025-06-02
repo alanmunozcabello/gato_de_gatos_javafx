@@ -205,6 +205,7 @@ public class Partida{
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 turnoJugadorO(x, y);//turno del jugador O
+                return;
             }
 
             if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
