@@ -6,10 +6,6 @@ public class Main {
         ArrayList<Jugador> jugadores;
         ArrayList<Partida> partidas;
         boolean bandera;
-        Partida partida = Partida.getInstance();
-        Cuadrantes cuadrantes=new Cuadrantes();
-        Observador consola=new VistaEnConsola();
-        partida.agregarObservador(consola);
         DeSerializar deSerializar = new DeSerializar();
         jugadores = deSerializar.deserializarJugadores();
         partidas = deSerializar.deserializarPartidas();
@@ -23,6 +19,10 @@ public class Main {
             scanner.nextLine();
             switch (opcion) {
                 case 1:
+                    Partida partida = Partida.getInstance();
+                    Cuadrantes cuadrantes=new Cuadrantes();
+                    Observador consola=new VistaEnConsola();
+                    partida.agregarObservador(consola);
                     System.out.println("----Elegir Modo----");
                     System.out.println("{1} Jugador vs Bot fácil");
                     System.out.println("{2} Jugador vs Bot difícil");

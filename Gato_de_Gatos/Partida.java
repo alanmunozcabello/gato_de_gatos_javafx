@@ -207,7 +207,6 @@ public class Partida{
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
-                System.out.println("Movimientos jugador X: " + movimientosJX);
                 turnoJugadorO(x, y);//turno del jugador O
                 return;
             }
@@ -225,7 +224,6 @@ public class Partida{
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
-                System.out.println("Movimientos jugador X: " + movimientosJX);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
                     terminarPartida();
@@ -247,7 +245,6 @@ public class Partida{
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
-                System.out.println("Movimientos jugador X: " + movimientosJX);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
                     terminarPartida();
@@ -281,7 +278,6 @@ public class Partida{
                 y=jugadorO.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJO();
-                System.out.println("Movimientos jugador O: " + movimientosJO);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
                     terminarPartida();
@@ -303,7 +299,6 @@ public class Partida{
                 y=jugadorO.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJO();
-                System.out.println("Movimientos jugador O: " + movimientosJO);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
                     terminarPartida();
