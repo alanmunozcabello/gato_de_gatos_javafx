@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.lang.Thread;
 public class Partida{
     private static Partida instance;
@@ -29,6 +28,7 @@ public class Partida{
         this.cuadrantes = cuadrantes;
         this.movimientosJX = 0;
         this.movimientosJO = 0;
+        this.jugadorGanador = null;
         // this.cuadranteActualDeJuego = cuadrantes.getCuadrante(0);
         this.observadores = new ArrayList<>();
     }
@@ -50,47 +50,47 @@ public class Partida{
             //lanza el jugador1
             System.out.println("¡Tira el jugador 1!\n");
             dadoJ1=dados.tirarDados();
-            try {
-                Thread.sleep(2000);
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
+            // try {
+            //     Thread.sleep(2000);
+            // } catch (Exception e) {
+            //     // TODO: handle exception
+            // }
             System.out.println("El jugador 1 consigue ¡"+dadoJ1+"!");
             //lanza el jugador2
             System.out.println("¡Tira el jugador 2!\n");
             dadoJ2=dados.tirarDados();
-            try {
-                Thread.sleep(2000);
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
+            // try {
+            //     Thread.sleep(2000);
+            // } catch (Exception e) {
+            //     // TODO: handle exception
+            // }
             System.out.println("El jugador 2 consigue ¡"+dadoJ2+"!");
             if(dadoJ1==dadoJ2){
                 System.out.println("¡Empate... se hará otra ronda de dados!");
-                try {
-                    Thread.sleep(2000);
-                } catch (Exception e) {
-                    // TODO: handle exception
-                }
+                // try {
+                //     Thread.sleep(2000);
+                // } catch (Exception e) {
+                //     // TODO: handle exception
+                // }
             }
         }
         if(dadoJ1>dadoJ2){
-            try {
-                Thread.sleep(2000);
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
+            // try {
+            //     Thread.sleep(2000);
+            // } catch (Exception e) {
+            //     // TODO: handle exception
+            // }
             System.out.println("¡El jugador 1 será X!");
             //se quedan tal cual
             jugadorX.setSimbolo('X');
             jugadorO.setSimbolo('O');
         }
         if(dadoJ1<dadoJ2){
-            try {
-                Thread.sleep(2000);
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
+            // try {
+            //     Thread.sleep(2000);
+            // } catch (Exception e) {
+            //     // TODO: handle exception
+            // }
             System.out.println("¡El jugador 2 será X!");
             Jugador tempJ1=jugadorX; //se le da al jugador 2 la X
             jugadorX=jugadorO;
@@ -199,6 +199,7 @@ public class Partida{
                 cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
                 jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);//turno del jugador X
                 if(jugadorX.surrender){
+                    jugadorGanador = jugadorO;
                     terminarPartida();
                     return;
                 }
@@ -215,6 +216,7 @@ public class Partida{
                 cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
                 jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorX.surrender){
+                    jugadorGanador = jugadorO;
                     terminarPartida();
                     return;
                 }
@@ -225,6 +227,7 @@ public class Partida{
                 aumentarMovimientosJX();
                 System.out.println("Movimientos jugador X: " + movimientosJX);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                    jugadorGanador = jugadorX;
                     terminarPartida();
                     return;
                 }else{
@@ -236,6 +239,7 @@ public class Partida{
                 jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorX.surrender){
                     terminarPartida();
+                    jugadorGanador = jugadorO;
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
@@ -245,6 +249,7 @@ public class Partida{
                 aumentarMovimientosJX();
                 System.out.println("Movimientos jugador X: " + movimientosJX);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                    jugadorGanador = jugadorX;
                     terminarPartida();
                     return;
                 }else{
@@ -267,6 +272,7 @@ public class Partida{
                 cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
                 jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorO.surrender){
+                    jugadorGanador = jugadorX;
                     terminarPartida();
                     return;
                 }
@@ -277,6 +283,7 @@ public class Partida{
                 aumentarMovimientosJO();
                 System.out.println("Movimientos jugador O: " + movimientosJO);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                    jugadorGanador = jugadorO;
                     terminarPartida();
                     return;
                 }else{
@@ -287,6 +294,7 @@ public class Partida{
                 cuadranteActualDeJuego=jugadorO.seleccionarCuadranteDeJuego(cuadrantes);
                 jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorO.surrender){
+                    jugadorGanador = jugadorX;
                     terminarPartida();
                     return;
                 }
@@ -297,6 +305,7 @@ public class Partida{
                 aumentarMovimientosJO();
                 System.out.println("Movimientos jugador O: " + movimientosJO);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                    jugadorGanador = jugadorO;
                     terminarPartida();
                     return;
                 }else{
@@ -322,7 +331,12 @@ public class Partida{
     }
     @Override
     public String toString() {
-        return "\n[Jugador X: " + jugadorX.getNombre() + "\nJugador O: " + jugadorO.getNombre() + "\nMovimientos Jugador X: " 
-        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: " + jugadorGanador;
+        if(jugadorGanador==null){
+            return "\n[Jugador X: " + jugadorX.getNombre() + "\nJugador O: " + jugadorO.getNombre() + "\nMovimientos Jugador X: " 
+        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: Ninguno";
+        }else{
+            return "\n[Jugador X: " + jugadorX.getNombre() + "\nJugador O: " + jugadorO.getNombre() + "\nMovimientos Jugador X: " 
+        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: " + jugadorGanador.getNombre();
+        }
     }
 }
