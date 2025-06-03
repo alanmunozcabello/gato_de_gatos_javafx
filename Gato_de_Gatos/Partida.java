@@ -202,6 +202,10 @@ public class Partida implements Serializable{
         if(partidaEnCurso){
             System.out.println("TURNO X--------------------------------");
             if(!cuadrantes.hayCuadrantesLibres()){
+                jugadorX.aumentarPartidasEmpatadas();
+                jugadorO.aumentarPartidasEmpatadas();
+                jugadorX.aumentarPartidasJugadas();
+                jugadorO.aumentarPartidasJugadas();
                 terminarPartida();
                 return;
             }
@@ -211,6 +215,10 @@ public class Partida implements Serializable{
                 jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);//turno del jugador X
                 if(jugadorX.surrender){
                     jugadorGanador = jugadorO;
+                    jugadorX.aumentarPartidasPerdidas();
+                    jugadorO.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
                     terminarPartida();
                     return;
                 }
@@ -227,6 +235,10 @@ public class Partida implements Serializable{
                 jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorX.surrender){
                     jugadorGanador = jugadorO;
+                    jugadorX.aumentarPartidasPerdidas();
+                    jugadorO.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
                     terminarPartida();
                     return;
                 }
@@ -237,18 +249,26 @@ public class Partida implements Serializable{
                 aumentarMovimientosJX();
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
+                    jugadorO.aumentarPartidasPerdidas();
+                    jugadorX.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
                     terminarPartida();
                     return;
                 }else{
                     turnoJugadorO(x, y); //le toca al siguiente en el cuadrante x , y
                 }
             }else{
-                System.out.println("El siguiente cuadrante está bloqueado\n");
+                System.out.println("El siguiente cuadrante está bloqueado");
                 cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
                 jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorX.surrender){
-                    terminarPartida();
                     jugadorGanador = jugadorO;
+                    jugadorX.aumentarPartidasPerdidas();
+                    jugadorO.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
+                    terminarPartida();
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
@@ -258,6 +278,10 @@ public class Partida implements Serializable{
                 aumentarMovimientosJX();
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
+                    jugadorO.aumentarPartidasPerdidas();
+                    jugadorX.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
                     terminarPartida();
                     return;
                 }else{
@@ -273,6 +297,10 @@ public class Partida implements Serializable{
         if(partidaEnCurso){
             System.out.println("TURNO O--------------------------------");
             if(!cuadrantes.hayCuadrantesLibres()){
+                jugadorX.aumentarPartidasEmpatadas();
+                jugadorO.aumentarPartidasEmpatadas();
+                jugadorX.aumentarPartidasJugadas();
+                jugadorO.aumentarPartidasJugadas();
                 terminarPartida();
                 return;
             }
@@ -280,6 +308,10 @@ public class Partida implements Serializable{
                 cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
                 jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorO.surrender){
+                    jugadorO.aumentarPartidasPerdidas();
+                    jugadorX.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
                     jugadorGanador = jugadorX;
                     terminarPartida();
                     return;
@@ -291,6 +323,10 @@ public class Partida implements Serializable{
                 aumentarMovimientosJO();
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
+                    jugadorX.aumentarPartidasPerdidas();
+                    jugadorO.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
                     terminarPartida();
                     return;
                 }else{
@@ -301,6 +337,10 @@ public class Partida implements Serializable{
                 cuadranteActualDeJuego=jugadorO.seleccionarCuadranteDeJuego(cuadrantes);
                 jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorO.surrender){
+                    jugadorO.aumentarPartidasPerdidas();
+                    jugadorX.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
                     jugadorGanador = jugadorX;
                     terminarPartida();
                     return;
@@ -312,6 +352,10 @@ public class Partida implements Serializable{
                 aumentarMovimientosJO();
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
+                    jugadorX.aumentarPartidasPerdidas();
+                    jugadorO.aumentarPartidasGanadas();
+                    jugadorX.aumentarPartidasJugadas();
+                    jugadorO.aumentarPartidasJugadas();
                     terminarPartida();
                     return;
                 }else{

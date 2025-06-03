@@ -145,7 +145,7 @@ public class Jugador implements Serializable{
     }
     @Override
     public String toString(){
-        return "Jugador: "+ this.nombre + "\nSimbolo: " + this.simbolo + "\nPartidas Jugadas: " + this.partidasJugadas + "\nPartidas Ganadas: " + this.partidasGanadas + 
-                "\nPartidas Perdidas: " + this.partidasPerdidas + "WinRate: " + calcularWinRate() + "%";
+        return "Jugador: "+ nombre + "\nPartidas Jugadas: " + partidasJugadas + "\nPartidas Ganadas: " + partidasGanadas + 
+                "\nPartidas Perdidas: " + partidasPerdidas + "\nPartidas empatadas: " + partidasEmpatadas + "\nWinRate: " + calcularWinRate() + "%";
     }
 }
