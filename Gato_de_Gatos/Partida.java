@@ -98,7 +98,7 @@ public class Partida{
             jugadorX.setSimbolo('X');
             jugadorO.setSimbolo('O');
         }
-        //--------------------------------------------------------------------------
+        ////--------------------------------------------------------------------------
         //Dar comienzo a los turnos
         notificarObservadores();
         turnoJugadorX(-1, -1);
