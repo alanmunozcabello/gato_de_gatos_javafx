@@ -1,7 +1,8 @@
 import java.util.Scanner;
+import java.io.Serializable;
 import java.lang.Thread;
 
-public class Jugador{
+public class Jugador implements Serializable{
     String nombre;
     char simbolo;
     int partidasJugadas;

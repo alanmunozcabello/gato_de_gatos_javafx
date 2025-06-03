@@ -62,7 +62,7 @@ public class Main {
                             partida.setJugadores(jugadorA, botFacil);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
-                            partidas.add(partida);
+                            partidas.add(partida.crearCopia());
                             break;
                         case 2:
                             System.out.print("Ingrese su nombre: ");
@@ -95,7 +95,7 @@ public class Main {
                             partida.setJugadores(jugadorB, botDificil);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
-                            partidas.add(partida);
+                            partidas.add(partida.crearCopia());
                             break;
                         case 3:
                             System.out.print("Jugador 1 ingrese su nombre: ");
@@ -130,7 +130,7 @@ public class Main {
                             partida.setJugadores(jugador1, jugador2);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
-                            partidas.add(partida);
+                            partidas.add(partida.crearCopia());
                             break;
                         default:
                             System.out.println("Opción inválida, intentelo de nuevo");

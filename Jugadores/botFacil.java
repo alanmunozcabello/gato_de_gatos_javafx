@@ -1,4 +1,6 @@
-public class botFacil extends Jugador {
+import java.io.Serializable;
+
+public class botFacil extends Jugador implements Serializable{
     public botFacil(char simbolo) {
         super(simbolo);
         this.nombre = "botFacil";

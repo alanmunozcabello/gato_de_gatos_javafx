@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.lang.Thread;
-public class Partida{
+public class Partida implements Serializable{
     private static Partida instance;
     private boolean partidaEnCurso;
     private int movimientosJX;
@@ -102,6 +103,16 @@ public class Partida{
         //Dar comienzo a los turnos
         notificarObservadores();
         turnoJugadorX(-1, -1);
+    }
+
+    public Partida crearCopia(){
+        Partida copia = new Partida();
+        copia.jugadorX = this.jugadorX;
+        copia.jugadorO = this.jugadorO;
+        copia.jugadorGanador = this.jugadorGanador;
+        copia.movimientosJX = this.movimientosJX;
+        copia.movimientosJO = this.movimientosJO;
+        return copia;
     }
 
     public void terminarPartida(){ // darle cierre a la partida la partida
