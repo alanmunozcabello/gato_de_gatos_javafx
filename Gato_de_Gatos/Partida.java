@@ -328,10 +328,10 @@ public class Partida{
     public String toString() {
         if(jugadorGanador==null){
             return "\n[Jugador X: " + jugadorX.getNombre() + "\nJugador O: " + jugadorO.getNombre() + "\nMovimientos Jugador X: " 
-        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: Ninguno";
+        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: Ninguno ]";
         }else{
             return "\n[Jugador X: " + jugadorX.getNombre() + "\nJugador O: " + jugadorO.getNombre() + "\nMovimientos Jugador X: " 
-        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: " + jugadorGanador.getNombre();
+        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: " + jugadorGanador.getNombre() + " ]";
         }
     }
 }

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
-    //
     public static void main(String[] args) {
         ArrayList<Jugador> jugadores;
         ArrayList<Partida> partidas;
@@ -12,6 +11,7 @@ public class Main {
         while(true){
             System.out.println("----Menú de opciones----");
             System.out.println("[1] Jugar");
+            System.out.println("[3] Ver historial de partidas");
             System.out.println("[10] Salir");
             System.out.print("Opción: ");
             Scanner scanner = new Scanner(System.in);
@@ -62,7 +62,7 @@ public class Main {
                             partida.setJugadores(jugadorA, botFacil);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
-                            System.out.println(partida.toString()); 
+                            partidas.add(partida);
                             break;
                         case 2:
                             System.out.print("Ingrese su nombre: ");
@@ -95,7 +95,7 @@ public class Main {
                             partida.setJugadores(jugadorB, botDificil);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
-                            System.out.println(partida.toString()); 
+                            partidas.add(partida);
                             break;
                         case 3:
                             System.out.print("Jugador 1 ingrese su nombre: ");
@@ -130,7 +130,7 @@ public class Main {
                             partida.setJugadores(jugador1, jugador2);
                             partida.agregarObservador(consola);
                             partida.comenzarPartida();
-                            System.out.println(partida.toString()); 
+                            partidas.add(partida);
                             break;
                         default:
                             System.out.println("Opción inválida, intentelo de nuevo");
@@ -139,8 +139,16 @@ public class Main {
                     break;
                 case 2:
                     break;
+                case 3:
+                    for(Partida partida_p : partidas){
+                        System.out.println(partida_p.toString());
+                    }
+                    break;
                 case 10:
                     System.out.println("Saliendo...");
+                    Serializar serializar = new Serializar(jugadores, partidas);
+                    serializar.serializarJugadores();
+                    serializar.serializarPartidas();
                     return;
                 default:
                     System.out.println("Opción inválida, intentelo de nuevo");
