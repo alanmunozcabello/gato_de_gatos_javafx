@@ -71,11 +71,11 @@ public class botDificil extends Jugador{
         return mejorJugada;
     }
 
-    private int minimax(char[][] tablero, boolean esMaximizando, char miSimbolo, char oponenteSimbolo) {
+    private int minimax(char[][] tablero, boolean esMaximizando, char miSimbolo, char rivalSimbolo) {
         if(hayGanador(tablero, miSimbolo)){ //si el bot gana +10
             return 10;
         }
-        if(hayGanador(tablero, oponenteSimbolo)){//si el bot pierde -10
+        if(hayGanador(tablero, rivalSimbolo)){//si el bot pierde -10
             return -10;
         }
         if(tableroLleno(tablero)){ //si no 0
@@ -88,7 +88,7 @@ public class botDificil extends Jugador{
                 for (int col = 0; col < 3; col++){
                     if (tablero[fila][col] == ' '){
                         tablero[fila][col] = miSimbolo;
-                        int valor = minimax(tablero, false, miSimbolo, oponenteSimbolo);
+                        int valor = minimax(tablero, false, miSimbolo, rivalSimbolo);
                         tablero[fila][col] = ' ';
                         mejor = Math.max(mejor, valor);//Se saca el int mayor entre ambos
                     }
@@ -100,8 +100,8 @@ public class botDificil extends Jugador{
             for(int fila = 0; fila < 3; fila++){
                 for(int col = 0; col < 3; col++){
                     if(tablero[fila][col] == ' '){
-                        tablero[fila][col] = oponenteSimbolo;
-                        int valor = minimax(tablero, true, miSimbolo, oponenteSimbolo);
+                        tablero[fila][col] = rivalSimbolo;
+                        int valor = minimax(tablero, true, miSimbolo, rivalSimbolo);
                         tablero[fila][col] = ' ';
                         peor = Math.min(peor, valor);
                     }

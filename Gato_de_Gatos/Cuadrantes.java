@@ -86,7 +86,7 @@ public class Cuadrantes{
         System.out.println(estado + " " + (x+1)+","+(y+1));
     }
 
-    public Gato getCuadrante(int fila, int columna){
-        return this.cuadrantes[fila][columna];
+    public Gato getCuadrante(int x, int y){
+        return this.cuadrantes[x][y];
     }
 }
