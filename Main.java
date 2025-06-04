@@ -177,9 +177,9 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Saliendo...");
-                    Serializar serializar = new Serializar(jugadores, partidas);
-                    serializar.serializarJugadores();
-                    serializar.serializarPartidas();
+                    Serializar serializar = new Serializar();
+                    serializar.serializarJugadores(jugadores);
+                    serializar.serializarPartidas(partidas);
                     return;
                 default:
                     System.out.println("Opción inválida, intentelo de nuevo");

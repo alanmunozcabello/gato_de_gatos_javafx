@@ -226,6 +226,7 @@ public class Partida implements Serializable{
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
+                System.out.println("Tu cuadrante de juego: " + (x+1) + "," + (y+1));
                 turnoJugadorO(x, y);//turno del jugador O
                 return;
             }
@@ -247,6 +248,7 @@ public class Partida implements Serializable{
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
+                System.out.println("Tu cuadrante de juego: " + (x+1) + "," + (y+1));
                 if(verificarVictoria()==1){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
                     jugadorO.aumentarPartidasPerdidas();
@@ -278,6 +280,7 @@ public class Partida implements Serializable{
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
+                System.out.println("Tu cuadrante de juego: " + (x+1) + "," + (y+1));
                 if(verificarVictoria()==1){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
                     jugadorO.aumentarPartidasPerdidas();
@@ -324,6 +327,7 @@ public class Partida implements Serializable{
                 y=jugadorO.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJO();
+                System.out.println("Tu cuadrante de juego: " + (x+1) + "," + (y+1));
                 if(verificarVictoria()==1){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();
@@ -355,6 +359,7 @@ public class Partida implements Serializable{
                 y=jugadorO.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJO();
+                System.out.println("Tu cuadrante de juego: " + (x+1) + "," + (y+1));
                 if(verificarVictoria()==1){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();

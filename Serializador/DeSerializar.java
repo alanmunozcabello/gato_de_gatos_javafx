@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class DeSerializar{
+    private ArrayList<Jugador> jugadores;
+    private ArrayList<Partida> partidas;
     public DeSerializar(){
     }
     public ArrayList<Jugador> deserializarJugadores(){
@@ -13,7 +15,7 @@ public class DeSerializar{
         try{
             FileInputStream fileInput = new FileInputStream(archivo);
             ObjectInputStream objectInput = new ObjectInputStream(fileInput);
-            ArrayList<Jugador> jugadores = (ArrayList<Jugador>) objectInput.readObject();
+            jugadores = (ArrayList<Jugador>) objectInput.readObject();
             objectInput.close();
             fileInput.close();
             return jugadores;
@@ -31,7 +33,7 @@ public class DeSerializar{
         try{
             FileInputStream fileInput = new FileInputStream(archivo);
             ObjectInputStream objectInput = new ObjectInputStream(fileInput);
-            ArrayList<Partida> partidas = (ArrayList<Partida>) objectInput.readObject();
+            partidas = (ArrayList<Partida>) objectInput.readObject();
             objectInput.close();
             fileInput.close();
             return partidas;

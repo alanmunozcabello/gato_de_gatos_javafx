@@ -3,13 +3,11 @@ import java.util.ArrayList;
 public class Serializar{
     private ArrayList<Jugador> jugadores;//no dejaba si no estaba inicializado
     private ArrayList<Partida> partidas;//no dejaba si no estaba inicializado
-
-    public Serializar(ArrayList<Jugador> jugadores, ArrayList<Partida> partidas){
-        this.jugadores = jugadores;
-        this.partidas = partidas;
+    public Serializar(){
     }
         
-    public void serializarJugadores(){
+    public void serializarJugadores(ArrayList<Jugador> jugadores){
+        this.jugadores = jugadores;
         try{
             FileOutputStream fileOutput = new FileOutputStream("jugadores.txt");
             ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
@@ -20,7 +18,8 @@ public class Serializar{
             e.printStackTrace();
         }
     }
-    public void serializarPartidas(){
+    public void serializarPartidas(ArrayList<Partida> partidas){
+        this.partidas = partidas;
         try{
             FileOutputStream fileOutput = new FileOutputStream("partidas.txt");
             ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
