@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
 public class Serializar{
-    private ArrayList<Jugador> jugadores;//no dejaba si no estaba inicializado
-    private ArrayList<Partida> partidas;//no dejaba si no estaba inicializado
+    private ArrayList<Jugador> jugadores;
+    private ArrayList<Partida> partidas;
     public Serializar(){
     }
         
