@@ -264,6 +264,8 @@ public class Partida implements Serializable{
             }else{
                 System.out.println("El siguiente cuadrante está bloqueado");
                 cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
+                x=jugadorX.getFila(); //para el cuadrante de juego actual
+                y=jugadorX.getColumna();
                 jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorX.surrender){
                     jugadorGanador = jugadorO;
@@ -277,7 +279,7 @@ public class Partida implements Serializable{
                 cuadrantes.bloquearCuadrante(x, y);
                 // int auxX = x;
                 // int auxY = y;
-                x=jugadorX.getFila();
+                x=jugadorX.getFila(); //para el proximo cuadrante de juego
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
@@ -344,6 +346,8 @@ public class Partida implements Serializable{
             }else{
                 System.out.println("El siguiente cuadrante está bloqueado\n");
                 cuadranteActualDeJuego=jugadorO.seleccionarCuadranteDeJuego(cuadrantes);
+                x=jugadorX.getFila(); //para el cuadrante de juego actual
+                y=jugadorX.getColumna();
                 jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
                 if(jugadorO.surrender){
                     jugadorO.aumentarPartidasPerdidas();

@@ -11,7 +11,7 @@ public class Cuadrantes{
     }
 
     public void bloquearCuadrante(int fila, int columna){
-        Gato gato = cuadrantes[fila][columna];
+        Gato gato = getCuadrante(fila, columna);
         char[][] tablero = gato.getGato();
         boolean bloqueado = false;
         

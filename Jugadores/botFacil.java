@@ -19,6 +19,8 @@ public class botFacil extends Jugador implements Serializable{
             }
         }
         Gato gato = cuadrantes.getCuadrante(x,y);
+        this.fila = x;
+        this.columna = y;
         return gato;
     }
 
