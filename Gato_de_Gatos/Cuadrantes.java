@@ -1,5 +1,5 @@
 public class Cuadrantes{
-    Gato cuadrantes[][];
+    private Gato cuadrantes[][];
 
     public Cuadrantes(){
         this.cuadrantes = new Gato[3][3];

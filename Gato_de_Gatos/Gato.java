@@ -1,6 +1,6 @@
 public class Gato {
     private char[][] gato = new char[3][3];
-    String estado; //"libre", "X", "O", "empate"
+    private String estado; //"libre", "X", "O", "empate"
 
     public Gato(){ //crear gato vacio
         for(int i = 0; i < 3; i++){
