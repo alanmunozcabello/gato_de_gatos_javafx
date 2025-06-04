@@ -51,47 +51,47 @@ public class Partida implements Serializable{
             //lanza el jugador1
             System.out.println("¡Tira el jugador 1!\n");
             dadoJ1=dados.tirarDados();
-            // try {
-            //     Thread.sleep(2000);
-            // } catch (Exception e) {
-            //     // TODO: handle exception
-            // }
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             System.out.println("El jugador 1 consigue ¡"+dadoJ1+"!");
             //lanza el jugador2
             System.out.println("¡Tira el jugador 2!\n");
             dadoJ2=dados.tirarDados();
-            // try {
-            //     Thread.sleep(2000);
-            // } catch (Exception e) {
-            //     // TODO: handle exception
-            // }
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             System.out.println("El jugador 2 consigue ¡"+dadoJ2+"!");
             if(dadoJ1==dadoJ2){
                 System.out.println("¡Empate... se hará otra ronda de dados!");
-                // try {
-                //     Thread.sleep(2000);
-                // } catch (Exception e) {
-                //     // TODO: handle exception
-                // }
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
             }
         }
         if(dadoJ1>dadoJ2){
-            // try {
-            //     Thread.sleep(2000);
-            // } catch (Exception e) {
-            //     // TODO: handle exception
-            // }
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             System.out.println("¡El jugador 1 será X!");
             //se quedan tal cual
             jugadorX.setSimbolo('X');
             jugadorO.setSimbolo('O');
         }
         if(dadoJ1<dadoJ2){
-            // try {
-            //     Thread.sleep(2000);
-            // } catch (Exception e) {
-            //     // TODO: handle exception
-            // }
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             System.out.println("¡El jugador 2 será X!");
             Jugador tempJ1=jugadorX; //se le da al jugador 2 la X
             jugadorX=jugadorO;
@@ -134,19 +134,19 @@ public class Partida implements Serializable{
     
     
 
-    public boolean verificarVictoria(){ //verifica si uno de los jugadores ganó (a nivel cuadrantes!)
+    public int verificarVictoria(){ //verifica si uno de los jugadores ganó (a nivel cuadrantes!)
         int cuadrantesLibres = 0;
         // Chequear X, O y horizontales
         for(int i = 0; i < 3; i++){
             if(cuadrantes.getCuadrante(i, 0).getEstado().equals("X") && 
                 cuadrantes.getCuadrante(i, 1).getEstado().equals("X") && 
                 cuadrantes.getCuadrante(i, 2).getEstado().equals("X")){
-                return true;
+                return 1;
             }
             if(cuadrantes.getCuadrante(i, 0).getEstado().equals("O") && 
                 cuadrantes.getCuadrante(i, 1).getEstado().equals("O") && 
                 cuadrantes.getCuadrante(i, 2).getEstado().equals("O")){
-                return true;
+                return 1;
             }
         }
         // Chequear X y O verticales
@@ -154,34 +154,34 @@ public class Partida implements Serializable{
             if(cuadrantes.getCuadrante(0, j).getEstado().equals("X") && 
                 cuadrantes.getCuadrante(1, j).getEstado().equals("X") && 
                 cuadrantes.getCuadrante(2, j).getEstado().equals("X")){
-                return true;
+                return 1;
             }
             if(cuadrantes.getCuadrante(0, j).getEstado().equals("O") && 
                 cuadrantes.getCuadrante(1, j).getEstado().equals("O") && 
                 cuadrantes.getCuadrante(2, j).getEstado().equals("O")){
-                return true;
+                return 1;
             }
         }
         // Chequear X y O diagonales
         if(cuadrantes.getCuadrante(0, 0).getEstado().equals("X") && 
             cuadrantes.getCuadrante(1, 1).getEstado().equals("X") && 
             cuadrantes.getCuadrante(2, 2).getEstado().equals("X")){
-            return true;
+            return 1;
         }
         if(cuadrantes.getCuadrante(0, 0).getEstado().equals("O") && 
             cuadrantes.getCuadrante(1, 1).getEstado().equals("O") && 
             cuadrantes.getCuadrante(2, 2).getEstado().equals("O")){
-            return true;
+            return 1;
         }
         if(cuadrantes.getCuadrante(0, 2).getEstado().equals("X") && 
             cuadrantes.getCuadrante(1, 1).getEstado().equals("X") && 
             cuadrantes.getCuadrante(2, 0).getEstado().equals("X")){
-            return true;
+            return 1;
         }
         if(cuadrantes.getCuadrante(0, 2).getEstado().equals("O") && 
             cuadrantes.getCuadrante(1, 1).getEstado().equals("O") && 
             cuadrantes.getCuadrante(2, 0).getEstado().equals("O")){
-            return true;
+            return 1;
         }
 
         for(int i = 0; i < 3; i++){
@@ -193,9 +193,9 @@ public class Partida implements Serializable{
         }
 
         if(cuadrantesLibres == 0){
-            return true;
+            return 2;
         }
-        return false;
+        return 3;
     }
 
     public void turnoJugadorX(int x, int y){ //turno del jugador X
@@ -206,14 +206,14 @@ public class Partida implements Serializable{
                 jugadorO.aumentarPartidasEmpatadas();
                 jugadorX.aumentarPartidasJugadas();
                 jugadorO.aumentarPartidasJugadas();
+                System.out.println("Empate");
                 terminarPartida();
                 return;
             }
             if(x==-1 || y==-1){ //unicamente al inicio de la partida
-                //jugadorX.surrender = true;
                 cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
-                jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);//turno del jugador X
-                if(jugadorX.surrender){
+                jugadorX.setSurrender(jugadorX.hacerSeleccion(cuadranteActualDeJuego));//turno del jugador X
+                if(jugadorX.getSurrender()){
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();
                     jugadorO.aumentarPartidasGanadas();
@@ -232,8 +232,8 @@ public class Partida implements Serializable{
 
             if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
                 cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
-                jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
-                if(jugadorX.surrender){
+                jugadorX.setSurrender(jugadorX.hacerSeleccion(cuadranteActualDeJuego));
+                if(jugadorX.getSurrender()){
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();
                     jugadorO.aumentarPartidasGanadas();
@@ -243,14 +243,11 @@ public class Partida implements Serializable{
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
-                // int auxX = x;
-                // int auxY = y;
                 x=jugadorX.getFila();
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
-                // cuadrantes.bloquearCuadrante(auxX, auxY);
-                if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                if(verificarVictoria()==1){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
                     jugadorO.aumentarPartidasPerdidas();
                     jugadorX.aumentarPartidasGanadas();
@@ -266,8 +263,8 @@ public class Partida implements Serializable{
                 cuadranteActualDeJuego=jugadorX.seleccionarCuadranteDeJuego(cuadrantes);
                 x=jugadorX.getFila(); //para el cuadrante de juego actual
                 y=jugadorX.getColumna();
-                jugadorX.surrender = jugadorX.hacerSeleccion(cuadranteActualDeJuego);
-                if(jugadorX.surrender){
+                jugadorX.setSurrender(jugadorX.hacerSeleccion(cuadranteActualDeJuego));
+                if(jugadorX.getSurrender()){
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();
                     jugadorO.aumentarPartidasGanadas();
@@ -277,14 +274,11 @@ public class Partida implements Serializable{
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
-                // int auxX = x;
-                // int auxY = y;
                 x=jugadorX.getFila(); //para el proximo cuadrante de juego
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
-                // cuadrantes.bloquearCuadrante(auxX, auxY);
-                if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                if(verificarVictoria()==1){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
                     jugadorO.aumentarPartidasPerdidas();
                     jugadorX.aumentarPartidasGanadas();
@@ -309,13 +303,14 @@ public class Partida implements Serializable{
                 jugadorO.aumentarPartidasEmpatadas();
                 jugadorX.aumentarPartidasJugadas();
                 jugadorO.aumentarPartidasJugadas();
+                System.out.println("Empate");
                 terminarPartida();
                 return;
             }
             if(cuadrantes.getCuadrante(x, y).getEstado().equals("libre")){ //se lleva a cabo el turno
                 cuadranteActualDeJuego=cuadrantes.getCuadrante(x, y);
-                jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
-                if(jugadorO.surrender){
+                jugadorO.setSurrender(jugadorO.hacerSeleccion(cuadranteActualDeJuego));
+                if(jugadorO.getSurrender()){
                     jugadorO.aumentarPartidasPerdidas();
                     jugadorX.aumentarPartidasGanadas();
                     jugadorX.aumentarPartidasJugadas();
@@ -325,14 +320,11 @@ public class Partida implements Serializable{
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
-                // int auxX = x;
-                // int auxY = y;
                 x=jugadorO.getFila();
                 y=jugadorO.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJO();
-                // cuadrantes.bloquearCuadrante(auxX, auxY);
-                if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                if(verificarVictoria()==1){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();
                     jugadorO.aumentarPartidasGanadas();
@@ -346,10 +338,10 @@ public class Partida implements Serializable{
             }else{
                 System.out.println("El siguiente cuadrante está bloqueado\n");
                 cuadranteActualDeJuego=jugadorO.seleccionarCuadranteDeJuego(cuadrantes);
-                x=jugadorX.getFila(); //para el cuadrante de juego actual
-                y=jugadorX.getColumna();
-                jugadorO.surrender = jugadorO.hacerSeleccion(cuadranteActualDeJuego);
-                if(jugadorO.surrender){
+                x=jugadorO.getFila(); //para el cuadrante de juego actual
+                y=jugadorO.getColumna();
+                jugadorO.setSurrender(jugadorO.hacerSeleccion(cuadranteActualDeJuego));
+                if(jugadorO.getSurrender()){
                     jugadorO.aumentarPartidasPerdidas();
                     jugadorX.aumentarPartidasGanadas();
                     jugadorX.aumentarPartidasJugadas();
@@ -359,14 +351,11 @@ public class Partida implements Serializable{
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
-                // int auxX = x;
-                // int auxY = y;
                 x=jugadorO.getFila();
                 y=jugadorO.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJO();
-                // cuadrantes.bloquearCuadrante(auxX, auxY);
-                if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
+                if(verificarVictoria()==1){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();
                     jugadorO.aumentarPartidasGanadas();

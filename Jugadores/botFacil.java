@@ -1,9 +1,7 @@
-import java.io.Serializable;
-
-public class botFacil extends Jugador implements Serializable{
+public class botFacil extends Jugador{
     public botFacil(char simbolo) {
         super(simbolo);
-        this.nombre = "botFacil";
+        setNombre("botFacil");
     }
     
     @Override
@@ -19,8 +17,8 @@ public class botFacil extends Jugador implements Serializable{
             }
         }
         Gato gato = cuadrantes.getCuadrante(x,y);
-        this.fila = x;
-        this.columna = y;
+        this.setFila(x);
+        this.setColumna(y);
         return gato;
     }
 
@@ -40,9 +38,9 @@ public class botFacil extends Jugador implements Serializable{
             columna= (int) (Math.random() * 3);
             bandera=gato.verificarCasillaOcupada(fila, columna);//si la casilla es valida se saldra del ciclo
         }
-        this.fila=fila;
-        this.columna=columna;
-        gato.marcarSeleccion(fila, columna, simbolo); //marca el simbolo en la casilla valida
+        this.setFila(fila);
+        this.setColumna(columna);
+        gato.marcarSeleccion(fila, columna, getSimbolo()); //marca el simbolo en la casilla valida
         return false;
     }
 }

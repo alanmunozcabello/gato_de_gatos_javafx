@@ -86,10 +86,6 @@ public class Cuadrantes{
         System.out.println(estado + " " + (x+1)+","+(y+1));
     }
 
-    public void terminarJuego(){ //termina el juego
-        //logica de terminar juego
-    }
-
     public Gato getCuadrante(int fila, int columna){
         return this.cuadrantes[fila][columna];
     }

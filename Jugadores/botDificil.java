@@ -1,9 +1,7 @@
-import java.io.Serializable;
-
-public class botDificil extends Jugador implements Serializable {
+public class botDificil extends Jugador{
     public botDificil(char simbolo){
         super(simbolo);
-        this.nombre = "botDificil";
+        this.setNombre("botDificil");
     }
 
     @Override
@@ -19,8 +17,8 @@ public class botDificil extends Jugador implements Serializable {
             }
         }
         Gato gato = cuadrantes.getCuadrante(x,y);
-        this.fila = x;
-        this.columna = y;
+        this.setFila(x);
+        this.setColumna(y);
         return gato;
     }
 
@@ -34,19 +32,19 @@ public class botDificil extends Jugador implements Serializable {
             }
         char[][] tablero = gato.getGato();
 
-        int[] mejorJugada = obtenerMejorMovimiento(tablero, this.simbolo);
+        int[] mejorJugada = obtenerMejorMovimiento(tablero, this.getSimbolo());
 
         int fila = mejorJugada[0];
         int columna = mejorJugada[1];
 
-        gato.marcarSeleccion(fila, columna, this.simbolo);
-        this.fila = fila;
-        this.columna = columna;
+        gato.marcarSeleccion(fila, columna, this.getSimbolo());
+        this.setFila(fila);
+        this.setColumna(columna);
         return false;
     }
 
     // Minimax adaptado para el cuadrante actual de juego
-    public int[] obtenerMejorMovimiento(char[][] tablero, char miSimbolo) { //para el producto final cambiarlo a private-----------------------------
+    private int[] obtenerMejorMovimiento(char[][] tablero, char miSimbolo) {
         char oponenteSimbolo=' ';
         if (miSimbolo == 'X') {
             oponenteSimbolo = 'O';

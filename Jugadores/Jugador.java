@@ -1,17 +1,16 @@
 import java.util.Scanner;
 import java.io.Serializable;
-import java.lang.Thread;
 
 public class Jugador implements Serializable{
-    String nombre;
-    char simbolo;
-    int partidasJugadas;
-    int partidasGanadas;
-    int partidasPerdidas;
-    int partidasEmpatadas;
-    int fila, columna;
-    boolean gana;
-    boolean surrender;
+    private String nombre;
+    private char simbolo;
+    private int partidasJugadas;
+    private int partidasGanadas;
+    private int partidasPerdidas;
+    private int partidasEmpatadas;
+    private int fila, columna;
+    private boolean gana;
+    private boolean surrender;
 
     //constructor con todos los atributos
     public Jugador(String nombre, char simbolo, int partidasJugadas, int partidasGanadas, int partidasPerdidas){
@@ -126,27 +125,61 @@ public class Jugador implements Serializable{
     public char getSimbolo(){
         return this.simbolo;
     }
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
     public int getFila(){
         return this.fila;
+    }
+    public void setColumna(int columna) {
+        this.columna = columna;
     }
     public int getColumna(){
         return this.columna;
     }
-    public int getpartidasJugadas(){
-        return this.partidasJugadas;
+    public void setPartidasJugadas(int partidasJugadas) {
+        this.partidasJugadas = partidasJugadas;
+    }
+    public void setPartidasGanadas(int partidasGanadas) {
+        this.partidasGanadas = partidasGanadas;
     }
     public int getPartidasGanadas(){
         return this.partidasGanadas;
     }
+    public void setPartidasPerdidas(int partidasPerdidas) {
+        this.partidasPerdidas = partidasPerdidas;
+    }
     public int getPartidasPerdidas(){
         return this.partidasPerdidas;
+    }
+    public void setPartidasEmpatadas(int partidasEmpatadas) {
+        this.partidasEmpatadas = partidasEmpatadas;
     }
     public int getPartidasEmpatadas() {
         return partidasEmpatadas;
     }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     public String getNombre() {
         return nombre;
     }
+    public void setGana(boolean gana) {
+        this.gana = gana;
+    }
+    public boolean getGana(){
+        return gana;
+    }
+    public void setSurrender(boolean surrender) {
+        this.surrender = surrender;
+    }
+    public boolean getSurrender(){
+        return surrender;
+    }
+    public int getPartidasJugadas() {
+        return partidasJugadas;
+    }
+    
     @Override
     public String toString(){
         return "Jugador: "+ nombre + "\nPartidas Jugadas: " + partidasJugadas + "\nPartidas Ganadas: " + partidasGanadas + 
