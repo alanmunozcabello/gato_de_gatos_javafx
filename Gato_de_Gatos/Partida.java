@@ -243,10 +243,13 @@ public class Partida implements Serializable{
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
+                // int auxX = x;
+                // int auxY = y;
                 x=jugadorX.getFila();
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
+                // cuadrantes.bloquearCuadrante(auxX, auxY);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
                     jugadorO.aumentarPartidasPerdidas();
@@ -272,10 +275,13 @@ public class Partida implements Serializable{
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
+                // int auxX = x;
+                // int auxY = y;
                 x=jugadorX.getFila();
                 y=jugadorX.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJX();
+                // cuadrantes.bloquearCuadrante(auxX, auxY);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorX;
                     jugadorO.aumentarPartidasPerdidas();
@@ -317,10 +323,13 @@ public class Partida implements Serializable{
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
+                // int auxX = x;
+                // int auxY = y;
                 x=jugadorO.getFila();
                 y=jugadorO.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJO();
+                // cuadrantes.bloquearCuadrante(auxX, auxY);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();
@@ -346,10 +355,13 @@ public class Partida implements Serializable{
                     return;
                 }
                 cuadrantes.bloquearCuadrante(x, y);
+                // int auxX = x;
+                // int auxY = y;
                 x=jugadorO.getFila();
                 y=jugadorO.getColumna();
                 notificarObservadores();
                 aumentarMovimientosJO();
+                // cuadrantes.bloquearCuadrante(auxX, auxY);
                 if(verificarVictoria()){ //verifica si alguien ganó o no quedan cuadrantes
                     jugadorGanador = jugadorO;
                     jugadorX.aumentarPartidasPerdidas();

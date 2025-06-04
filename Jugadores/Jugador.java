@@ -110,7 +110,9 @@ public class Jugador implements Serializable{
         if(this.partidasJugadas==0){ //si no se usa este if no s epoddría calcular el winrate -> divición entre 0
             return 0;
         }
-        double winRate=this.partidasGanadas/this.partidasJugadas*100;//*100 para que sea un porcentaje
+        double x = this.partidasGanadas;
+        double y = this.partidasJugadas; 
+        double winRate = x/y*100;//*100 para que sea un porcentaje
         return winRate;
     }
 
