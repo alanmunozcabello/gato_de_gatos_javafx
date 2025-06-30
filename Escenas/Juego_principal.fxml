@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Scene xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Java.JavaFX.ej1_sceneBuilder.">
+    <AnchorPane prefHeight="786.0" prefWidth="1136.0">
+      <children>
+         <GridPane layoutX="14.0" layoutY="143.0" prefHeight="519.0" prefWidth="692.0">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+               <GridPane prefHeight="130.0" prefWidth="196.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt000" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt010" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt020" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt100" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt110" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt120" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt200" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt210" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt220" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0" GridPane.columnIndex="1">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt001" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt011" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt021" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt101" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt111" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt121" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt201" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt211" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt221" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0" GridPane.columnIndex="2">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt002" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt012" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt022" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt102" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt112" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt122" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt202" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt212" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt222" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0" GridPane.rowIndex="1">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt003" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt013" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt023" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt103" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt113" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt123" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt203" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt213" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt223" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt004" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt014" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt024" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt104" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt114" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt124" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt204" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt214" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt224" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt005" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt015" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt025" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt105" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt115" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt125" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt205" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt215" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt225" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0" GridPane.rowIndex="2">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt006" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt016" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt026" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt106" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt116" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt126" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt206" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt216" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt226" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt007" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt017" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt027" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt107" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt117" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt127" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt207" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt217" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt227" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+               <GridPane gridLinesVisible="true" prefHeight="130.0" prefWidth="196.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                     <Button fx:id="bt008" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt018" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt028" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt108" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt118" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt128" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt208" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt218" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="bt228" mnemonicParsing="false" prefHeight="58.0" prefWidth="79.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets right="2.0" top="2.0" />
+                  </padding>
+               </GridPane>
+            </children>
+         </GridPane>
+         <Text layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador X:  [Nombre jugador X]">
+            <font>
+               <Font size="22.0" />
+            </font>
+         </Text>
+         <Text layoutX="12.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador O:  [Nombre jugador O]">
+            <font>
+               <Font size="22.0" />
+            </font>
+         </Text>
+         <Text layoutX="759.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turno jugador [Simbolo del turno]">
+            <font>
+               <Font size="22.0" />
+            </font>
+         </Text>
+         <Button layoutX="819.0" layoutY="167.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="213.0" text="Surrender">
+            <font>
+               <Font size="27.0" />
+            </font>
+         </Button>
+         <Pane layoutX="780.0" layoutY="261.0" prefHeight="396.0" prefWidth="315.0" style="-fx-background-color: gray;">
+            <children>
+               <Text fill="WHITE" layoutX="46.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PlaceHolder para imagen/video" textAlignment="CENTER" wrappingWidth="222.716796875">
+                  <font>
+                     <Font size="22.0" />
+                  </font>
+               </Text>
+            </children>
+         </Pane>
+      </children></AnchorPane>
+</Scene>
