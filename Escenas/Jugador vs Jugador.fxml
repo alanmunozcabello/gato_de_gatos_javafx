@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Scene xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane prefHeight="281.0" prefWidth="545.0">
+      <children>
+         <Text layoutX="154.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador vs Jugador" wrappingWidth="256.84527587890625">
+            <font>
+               <Font size="27.0" />
+            </font>
+         </Text>
+         <Text layoutX="105.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="J1:" wrappingWidth="43.73675537109375">
+            <font>
+               <Font size="21.0" />
+            </font>
+         </Text>
+         <Text layoutX="105.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="J2:" wrappingWidth="43.73675537109375">
+            <font>
+               <Font size="21.0" />
+            </font>
+         </Text>
+         <TextField layoutX="149.0" layoutY="117.0" prefHeight="36.0" prefWidth="268.0" promptText="Nombre jugador 1" />
+         <TextField layoutX="149.0" layoutY="184.0" prefHeight="36.0" prefWidth="268.0" promptText="Nombre jugador 2" />
+      </children></AnchorPane>
+</Scene>

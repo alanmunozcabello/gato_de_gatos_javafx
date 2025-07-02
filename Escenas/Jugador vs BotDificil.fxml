@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Scene xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane prefHeight="263.0" prefWidth="458.0">
+      <children>
+         <Text layoutX="111.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador vs Bot difícil" textAlignment="CENTER" wrappingWidth="235.58355712890625">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+         <TextField layoutX="140.0" layoutY="108.0" prefHeight="46.0" prefWidth="224.0" promptText="Ingrese el nombre del jugador" />
+         <Text layoutX="73.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador:" wrappingWidth="59.5172119140625">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Text>
+      </children></AnchorPane>
+</Scene>
