@@ -401,12 +401,28 @@ public class Partida implements Serializable{
 
     @Override
     public String toString() {
-        if(jugadorGanador==null){
-            return "\n[Jugador X: " + jugadorX.getNombre() + "\nJugador O: " + jugadorO.getNombre() + "\nMovimientos Jugador X: " 
-        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: Ninguno ]";
-        }else{
-            return "\n[Jugador X: " + jugadorX.getNombre() + "\nJugador O: " + jugadorO.getNombre() + "\nMovimientos Jugador X: " 
-        + movimientosJX + "\nMovimientos Jugador O: " + movimientosJO + "\nJugador victorioso: " + jugadorGanador.getNombre() + " ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n[Jugador X: ").append(jugadorX.getNombre())
+          .append(" | Ganadas: ").append(jugadorX.getPartidasGanadas())
+          .append(" | Perdidas: ").append(jugadorX.getPartidasPerdidas())
+          .append(" | Empatadas: ").append(jugadorX.getPartidasEmpatadas())
+          .append(" | WinRate: ").append(String.format("%.2f", jugadorX.calcularWinRate())).append("%");
+    
+        sb.append("\nJugador O: ").append(jugadorO.getNombre())
+          .append(" | Ganadas: ").append(jugadorO.getPartidasGanadas())
+          .append(" | Perdidas: ").append(jugadorO.getPartidasPerdidas())
+          .append(" | Empatadas: ").append(jugadorO.getPartidasEmpatadas())
+          .append(" | WinRate: ").append(String.format("%.2f", jugadorO.calcularWinRate())).append("%");
+    
+        sb.append("\nMovimientos Jugador X: ").append(movimientosJX)
+          .append("\nMovimientos Jugador O: ").append(movimientosJO);
+    
+        if (jugadorGanador == null) {
+            sb.append("\nResultado: Empate");
+        } else {
+            sb.append("\nGanador: ").append(jugadorGanador.getNombre());
         }
+        sb.append(" ]");
+        return sb.toString();
     }
 }

@@ -45,27 +45,61 @@ public class JuegoPrincipalController {
 
     private final int SIZE = 9; // 9x9 tablero
 
-    public void setNombresJugadores(String nombre1, String nombre2) {
-        this.nombreJugador1 = nombre1;
-        this.nombreJugador2 = nombre2;
+    public void setNombresJugadores(String nombre1, String nombre2, int quienComienza) {
+        if (quienComienza == 1) {
+            this.nombreJugador1 = nombre1; // X
+            this.nombreJugador2 = nombre2; // O
+        } else {
+            this.nombreJugador1 = nombre2; // X
+            this.nombreJugador2 = nombre1; // O
+        }
         inicializarPartida();
         actualizarTextos();
     }
 
+    private Jugador obtenerJugador(String nombre) {
+        Jugador existente = buscarJugadorExistente(nombre);
+        if (existente != null) return existente;
+        Jugador nuevo = new Jugador(nombre);
+        MenuInicialController.jugadores.add(nuevo);
+        return nuevo;
+    }
+
+    public void setTurnoInicial(int quienComienza) {
+    // 1 = jugador1 (X), 2 = jugador2 (O)
+    this.turnoX = (quienComienza == 1);
+}
+
     private void inicializarPartida() {
         if ("BotFacil".equals(nombreJugador2)) {
-            jugador1 = buscarJugadorExistente(nombreJugador1);
-            if (jugador1 == null) jugador1 = new Jugador(nombreJugador1);
-            jugador2 = new botFacil('O');
+            jugador1 = obtenerJugador(nombreJugador1);
+            jugador2 = null;
+            for (Jugador j : MenuInicialController.jugadores) {
+                if (j instanceof botFacil) {
+                    jugador2 = j;
+                    break;
+                }
+            }
+            if (jugador2 == null) {
+                jugador2 = new botFacil('O');
+                MenuInicialController.jugadores.add(jugador2);
+            }
         } else if ("BotDificil".equals(nombreJugador2)) {
-            jugador1 = buscarJugadorExistente(nombreJugador1);
-            if (jugador1 == null) jugador1 = new Jugador(nombreJugador1);
-            jugador2 = new botDificil('O');
+            jugador1 = obtenerJugador(nombreJugador1);
+            jugador2 = null;
+            for (Jugador j : MenuInicialController.jugadores) {
+                if (j instanceof botDificil) {
+                    jugador2 = j;
+                    break;
+                }
+            }
+            if (jugador2 == null) {
+                jugador2 = new botDificil('O');
+                MenuInicialController.jugadores.add(jugador2);
+            }
         } else {
-            jugador1 = buscarJugadorExistente(nombreJugador1);
-            if (jugador1 == null) jugador1 = new Jugador(nombreJugador1);
-            jugador2 = buscarJugadorExistente(nombreJugador2);
-            if (jugador2 == null) jugador2 = new Jugador(nombreJugador2);
+            jugador1 = obtenerJugador(nombreJugador1);
+            jugador2 = obtenerJugador(nombreJugador2);
         }
         cuadrantes = new Cuadrantes();
         partida = Partida.getInstance();
@@ -257,26 +291,25 @@ public class JuegoPrincipalController {
         int estado = partida.verificarVictoria(); // 1 = victoria, 2 = empate
         
         if (estado == 1) {
-            // Victoria: turnoX indica quién fue el último en jugar
             if (turnoX) {
                 jugador1.aumentarPartidasGanadas();
                 jugador2.aumentarPartidasPerdidas();
-                partida.setJugadorGanador(jugador1); // <--- NUEVO
+                partida.setJugadorGanador(jugador1);
             } else {
                 jugador2.aumentarPartidasGanadas();
                 jugador1.aumentarPartidasPerdidas();
-                partida.setJugadorGanador(jugador2); // <--- NUEVO
+                partida.setJugadorGanador(jugador2);
             }
         } else if (estado == 2) {
             jugador1.aumentarPartidasEmpatadas();
             jugador2.aumentarPartidasEmpatadas();
-            partida.setJugadorGanador(null); // <--- Empate, sin ganador
+            partida.setJugadorGanador(null);
         }
         jugador1.aumentarPartidasJugadas();
         jugador2.aumentarPartidasJugadas();
     
-        if (!MenuInicialController.jugadores.contains(jugador1)) MenuInicialController.jugadores.add(jugador1);
-        if (!MenuInicialController.jugadores.contains(jugador2)) MenuInicialController.jugadores.add(jugador2);
+        // if (!MenuInicialController.jugadores.contains(jugador1)) MenuInicialController.jugadores.add(jugador1);
+        // if (!MenuInicialController.jugadores.contains(jugador2)) MenuInicialController.jugadores.add(jugador2);
         MenuInicialController.partidas.add(partida.crearCopia());
     
         // Serializar aquí para guardar los datos inmediatamente

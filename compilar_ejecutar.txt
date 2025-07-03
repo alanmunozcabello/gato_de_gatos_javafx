@@ -1,0 +1,5 @@
+Compilar:
+javac --module-path "C:\Users\alanm\javafx-sdk-21.0.7\lib" --add-modules javafx.controls,javafx.fxml -d bin -cp . Escenas/*.java Jugadores/*.java Gato_de_Gatos/*.java Serializador/*.java Interfaz_Grafica/*.java MainApp.java
+
+Ejecutar:
+java --module-path "C:\Users\alanm\javafx-sdk-21.0.7\lib" --add-modules javafx.controls,javafx.fxml -cp bin MainApp

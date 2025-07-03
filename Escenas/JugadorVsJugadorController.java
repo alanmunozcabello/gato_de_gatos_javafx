@@ -23,11 +23,27 @@ public class JugadorVsJugadorController {
         String nombre2 = nombreJugador2Field.getText();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Juego_principal.fxml"));
+            // Lanzar ventana de dados
+            FXMLLoader dadosLoader = new FXMLLoader(getClass().getResource("/Escenas/Ventana_dados.fxml"));
+            Parent dadosRoot = dadosLoader.load();
+            VentanaDadosController dadosController = dadosLoader.getController();
+            dadosController.setNombres(nombre1, nombre2);
+
+            Stage dadosStage = new Stage();
+            dadosStage.setTitle("Tirada de Dados");
+            dadosStage.setScene(new Scene(dadosRoot));
+            dadosStage.initOwner(iniciarPartidaButton.getScene().getWindow());
+            dadosStage.showAndWait();
+
+            int quienComienza = dadosController.getQuienComienza(); // 1 = nombre1, 2 = nombre2
+
+            // Cargar la escena principal y pasar los nombres y el turno inicial
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Escenas/Juego_principal.fxml"));
             Parent root = loader.load();
 
             JuegoPrincipalController controller = loader.getController();
-            controller.setNombresJugadores(nombre1, nombre2);
+            controller.setNombresJugadores(nombre1, nombre2, quienComienza);
+            controller.setTurnoInicial(quienComienza);
 
             Stage stage = (Stage) iniciarPartidaButton.getScene().getWindow();
             stage.setScene(new Scene(root));
