@@ -56,11 +56,8 @@ public class JuegoPrincipalController {
         inicializarPartida();
         actualizarTextos();
 
-        // Si el bot es X y debe iniciar, que juegue automáticamente
-        if (jugador1 instanceof botFacil) {
-            jugadaBot(jugador1);
-        } else if (jugador1 instanceof botDificil) {
-            jugadaBot(jugador1);
+        if (jugador1 instanceof botFacil || jugador1 instanceof botDificil) {
+            turnoInicialBot();
         }
     }
 
@@ -263,6 +260,58 @@ public class JuegoPrincipalController {
         turnoX = !turnoX;
         actualizarTextos();
     }
+
+    private void turnoInicialBot() {
+    // El bot debe elegir un cuadrante válido para iniciar
+    int cuadX = (int) (Math.random() * 3);
+    int cuadY = (int) (Math.random() * 3);
+    Gato cuadrante = cuadrantes.getCuadrante(cuadX, cuadY);
+
+    // El bot elige una casilla dentro del cuadrante
+    jugador1.seleccionarCuadranteDeJuego(cuadrantes); // actualiza fila y columna del bot
+    jugador1.hacerSeleccion(cuadrante);
+    int fila = jugador1.getFila();
+    int col = jugador1.getColumna();
+
+    // Actualiza el botón correspondiente
+    int globalFila = cuadX * 3 + fila;
+    int globalCol = cuadY * 3 + col;
+    for (javafx.scene.Node node : tableroGrid.getChildren()) {
+        if (GridPane.getRowIndex(node) == globalFila && GridPane.getColumnIndex(node) == globalCol) {
+            Button btn = (Button) node;
+            btn.setText(String.valueOf(jugador1.getSimbolo()));
+            btn.setDisable(true);
+            break;
+        }
+    }
+
+    // Incrementa movimientos
+    partida.aumentarMovimientosJX();
+
+    cuadrantes.bloquearCuadrante(cuadX, cuadY);
+
+    // Actualizar cuadrante actual para el próximo turno
+    cuadranteActualX = fila;
+    cuadranteActualY = col;
+
+    // Verificar victoria o empate
+    int estado = partida.verificarVictoria();
+    if (estado == 1) {
+        mostrarAlerta("¡Victoria!", "¡Ganó el bot!");
+        bloquearTablero();
+        finalizarPartida(false);
+        return;
+    } else if (estado == 2) {
+        mostrarAlerta("Empate", "¡La partida terminó en empate!");
+        bloquearTablero();
+        finalizarPartida(false);
+        return;
+    }
+
+    // Cambiar turno de vuelta al jugador
+    turnoX = false;
+    actualizarTextos();
+}
 
     private void handleSurrender() {
         String perdedor = turnoX ? jugador1.getNombre() : jugador2.getNombre();
