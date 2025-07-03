@@ -66,9 +66,9 @@ public class JuegoPrincipalController {
     }
 
     public void setTurnoInicial(int quienComienza) {
-    // 1 = jugador1 (X), 2 = jugador2 (O)
-    this.turnoX = (quienComienza == 1);
-}
+        // 1 = jugador1 (X), 2 = jugador2 (O)
+        this.turnoX = (quienComienza == 1);
+    }
 
     private void inicializarPartida() {
         if ("BotFacil".equals(nombreJugador2)) {
@@ -181,12 +181,12 @@ public class JuegoPrincipalController {
         if (estado == 1) {
             mostrarAlerta("¡Victoria!", "¡Ganó el jugador " + (turnoX ? jugador1.getNombre() : jugador2.getNombre()) + "!");
             bloquearTablero();
-            finalizarPartida();
+            finalizarPartida(false);
             return;
         } else if (estado == 2) {
             mostrarAlerta("Empate", "¡La partida terminó en empate!");
             bloquearTablero();
-            finalizarPartida();
+            finalizarPartida(false);
             return;
         }
 
@@ -231,12 +231,12 @@ public class JuegoPrincipalController {
         if (estado == 1) {
             mostrarAlerta("¡Victoria!", "¡Ganó el bot!");
             bloquearTablero();
-            finalizarPartida();
+            finalizarPartida(false);
             return;
         } else if (estado == 2) {
             mostrarAlerta("Empate", "¡La partida terminó en empate!");
             bloquearTablero();
-            finalizarPartida();
+            finalizarPartida(false);
             return;
         }
 
@@ -250,7 +250,7 @@ public class JuegoPrincipalController {
         String ganador = turnoX ? jugador2.getNombre() : jugador1.getNombre();
         mostrarAlerta("Surrender", "¡" + perdedor + " se ha rendido!\nGanador: " + ganador);
         bloquearTablero();
-        finalizarPartida();
+        finalizarPartida(true);
     }
 
     private void bloquearTablero() {
@@ -286,37 +286,48 @@ public class JuegoPrincipalController {
         }
         return null;
     }
-    
-    private void finalizarPartida() {
-        int estado = partida.verificarVictoria(); // 1 = victoria, 2 = empate
-        
-        if (estado == 1) {
+
+    // Nuevo método sobrecargado para distinguir surrender
+    private void finalizarPartida(boolean fueSurrender) {
+        if (fueSurrender) {
+            // El que NO es turnoX es el ganador
             if (turnoX) {
-                jugador1.aumentarPartidasGanadas();
-                jugador2.aumentarPartidasPerdidas();
-                partida.setJugadorGanador(jugador1);
-            } else {
                 jugador2.aumentarPartidasGanadas();
                 jugador1.aumentarPartidasPerdidas();
                 partida.setJugadorGanador(jugador2);
+            } else {
+                jugador1.aumentarPartidasGanadas();
+                jugador2.aumentarPartidasPerdidas();
+                partida.setJugadorGanador(jugador1);
             }
-        } else if (estado == 2) {
-            jugador1.aumentarPartidasEmpatadas();
-            jugador2.aumentarPartidasEmpatadas();
-            partida.setJugadorGanador(null);
+        } else {
+            int estado = partida.verificarVictoria(); // 1 = victoria, 2 = empate
+            if (estado == 1) {
+                if (turnoX) {
+                    jugador1.aumentarPartidasGanadas();
+                    jugador2.aumentarPartidasPerdidas();
+                    partida.setJugadorGanador(jugador1);
+                } else {
+                    jugador2.aumentarPartidasGanadas();
+                    jugador1.aumentarPartidasPerdidas();
+                    partida.setJugadorGanador(jugador2);
+                }
+            } else if (estado == 2) {
+                jugador1.aumentarPartidasEmpatadas();
+                jugador2.aumentarPartidasEmpatadas();
+                partida.setJugadorGanador(null);
+            }
         }
         jugador1.aumentarPartidasJugadas();
         jugador2.aumentarPartidasJugadas();
-    
-        // if (!MenuInicialController.jugadores.contains(jugador1)) MenuInicialController.jugadores.add(jugador1);
-        // if (!MenuInicialController.jugadores.contains(jugador2)) MenuInicialController.jugadores.add(jugador2);
+
         MenuInicialController.partidas.add(partida.crearCopia());
-    
+
         // Serializar aquí para guardar los datos inmediatamente
         Serializador.Serializar serializar = new Serializador.Serializar();
         serializar.serializarJugadores(MenuInicialController.jugadores);
         serializar.serializarPartidas(MenuInicialController.partidas);
-    
+
         // Volver al menú inicial
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu_inicial.fxml"));
@@ -326,5 +337,10 @@ public class JuegoPrincipalController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    // Mantén este método para compatibilidad con el resto del código
+    private void finalizarPartida() {
+        finalizarPartida(false);
     }
 }
