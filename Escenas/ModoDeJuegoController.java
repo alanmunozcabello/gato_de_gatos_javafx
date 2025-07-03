@@ -13,8 +13,8 @@ public class ModoDeJuegoController {
 
     @FXML
     private void initialize() {
-        jugadorVsJugadorButton.setOnAction(e -> cambiarEscena("Jugador vs Jugador.fxml"));
-        jugadorVsBotFacilButton.setOnAction(e -> cambiarEscena("Jugador vs BotFacil.fxml"));
+        jugadorVsJugadorButton.setOnAction(e -> cambiarEscena("JugadorVsJugador.fxml"));
+        jugadorVsBotFacilButton.setOnAction(e -> cambiarEscena("JugadorVsBotFacil.fxml"));
         // Si agregas el botón para Bot Difícil, agrégalo aquí también
         // botDificilButton.setOnAction(e -> cambiarEscena("Jugador vs BotDificil.fxml"));
     }
