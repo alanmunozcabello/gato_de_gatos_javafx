@@ -55,6 +55,13 @@ public class JuegoPrincipalController {
         }
         inicializarPartida();
         actualizarTextos();
+
+        // Si el bot es X y debe iniciar, que juegue automáticamente
+        if (jugador1 instanceof botFacil) {
+            jugadaBot(jugador1);
+        } else if (jugador1 instanceof botDificil) {
+            jugadaBot(jugador1);
+        }
     }
 
     private Jugador obtenerJugador(String nombre) {
@@ -169,6 +176,12 @@ public class JuegoPrincipalController {
         btn.setText(String.valueOf(simbolo));
         btn.setDisable(true);
 
+        if (simbolo == 'X') {
+            partida.aumentarMovimientosJX();
+        } else {
+            partida.aumentarMovimientosJO();
+        }
+
         // Bloquear cuadrante si corresponde
         cuadrantes.bloquearCuadrante(cuadFila, cuadCol);
 
@@ -218,6 +231,12 @@ public class JuegoPrincipalController {
                 btn.setDisable(true);
                 break;
             }
+        }
+
+        if (bot.getSimbolo() == 'X') {
+            partida.aumentarMovimientosJX();
+        } else {
+            partida.aumentarMovimientosJO();
         }
 
         cuadrantes.bloquearCuadrante(cuadranteActualX, cuadranteActualY);
