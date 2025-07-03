@@ -10,13 +10,13 @@ import javafx.scene.Parent;
 public class ModoDeJuegoController {
     @FXML private Button jugadorVsJugadorButton;
     @FXML private Button jugadorVsBotFacilButton;
+    @FXML private Button jugadorVsBotDificilButton;
 
     @FXML
     private void initialize() {
-        jugadorVsJugadorButton.setOnAction(e -> cambiarEscena("JugadorVsJugador.fxml"));
+        jugadorVsJugadorButton.setOnAction(e -> cambiarEscena("JugadorvsJugador.fxml"));
         jugadorVsBotFacilButton.setOnAction(e -> cambiarEscena("JugadorVsBotFacil.fxml"));
-        // Si agregas el botón para Bot Difícil, agrégalo aquí también
-        // botDificilButton.setOnAction(e -> cambiarEscena("Jugador vs BotDificil.fxml"));
+        jugadorVsBotDificilButton.setOnAction(e -> cambiarEscena("JugadorVsBotDificil.fxml"));
     }
 
     private void cambiarEscena(String fxml) {

@@ -26,7 +26,6 @@ public class JugadorVsJugadorController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Juego_principal.fxml"));
             Parent root = loader.load();
 
-            // Suponiendo que tienes un controlador para Juego_principal.fxml:
             JuegoPrincipalController controller = loader.getController();
             controller.setNombresJugadores(nombre1, nombre2);
 

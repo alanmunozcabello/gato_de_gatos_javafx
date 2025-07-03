@@ -1,3 +1,9 @@
+package Jugadores;
+
+import Gato_de_Gatos.Cuadrantes;
+import Gato_de_Gatos.Gato;
+import Interfaz_Grafica.Observador;
+
 public class botFacil extends Jugador{
     public botFacil(char simbolo) {
         super(simbolo);

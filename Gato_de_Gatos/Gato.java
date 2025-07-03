@@ -1,3 +1,5 @@
+package Gato_de_Gatos;
+
 public class Gato {
     private char[][] gato = new char[3][3];
     private String estado; //"libre", "X", "O", "empate"

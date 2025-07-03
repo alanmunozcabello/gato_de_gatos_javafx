@@ -1,3 +1,8 @@
+package Serializador;
+
+import Gato_de_Gatos.Partida;
+import Jugadores.Jugador;
+
 import java.io.*;
 import java.util.ArrayList;
 public class Serializar{

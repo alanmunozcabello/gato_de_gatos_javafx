@@ -18,15 +18,19 @@ public class MenuInicialController {
     @FXML private Button historialPartidasButton;
     @FXML private Button salirButton;
 
-    private ArrayList<Jugador> jugadores;
-    private ArrayList<Partida> partidas;
+    public static ArrayList<Jugador> jugadores;
+    public static ArrayList<Partida> partidas;
 
     @FXML
     private void initialize() {
-        // Deserializa los datos al iniciar el menú
-        DeSerializar deSerializar = new DeSerializar();
-        jugadores = deSerializar.deserializarJugadores();
-        partidas = deSerializar.deserializarPartidas();
+        if (jugadores == null) {
+            DeSerializar deSerializar = new DeSerializar();
+            jugadores = deSerializar.deserializarJugadores();
+        }
+        if (partidas == null) {
+            DeSerializar deSerializar = new DeSerializar();
+            partidas = deSerializar.deserializarPartidas();
+        }
 
         jugarButton.setOnAction(e -> cambiarEscena("ModoDeJuego.fxml"));
         historialJugadorButton.setOnAction(e -> abrirHistorialJugador());

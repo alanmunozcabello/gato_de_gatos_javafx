@@ -1,3 +1,5 @@
+package Gato_de_Gatos;
+
 public class Cuadrantes{
     private Gato cuadrantes[][];
 

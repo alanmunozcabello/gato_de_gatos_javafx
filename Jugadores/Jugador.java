@@ -1,3 +1,8 @@
+package Jugadores;
+
+import Gato_de_Gatos.Cuadrantes;
+import Gato_de_Gatos.Gato;
+
 import java.util.Scanner;
 import java.io.Serializable;
 
@@ -179,6 +184,19 @@ public class Jugador implements Serializable{
     public int getPartidasJugadas() {
         return partidasJugadas;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Jugador jugador = (Jugador) obj;
+        return nombre != null && nombre.equalsIgnoreCase(jugador.nombre);
+    }
+
+@Override
+public int hashCode() {
+    return nombre != null ? nombre.toLowerCase().hashCode() : 0;
+}
     
     @Override
     public String toString(){

@@ -1,6 +1,11 @@
+package Gato_de_Gatos;
+
 import java.util.ArrayList;
 import java.io.Serializable;
 import java.lang.Thread;
+import Jugadores.Jugador;
+import Interfaz_Grafica.Observador;
+
 public class Partida implements Serializable{
     private static Partida instance;
     private boolean partidaEnCurso;
@@ -16,7 +21,7 @@ public class Partida implements Serializable{
     private Partida(){
     }
 
-    static Partida getInstance(){
+    public static Partida getInstance(){
         if(instance == null){
             instance = new Partida();
         }
@@ -389,6 +394,11 @@ public class Partida implements Serializable{
             observador.actualizar(cuadrantes);
         }
     }
+
+    public void setJugadorGanador(Jugador j){
+        this.jugadorGanador=j;
+    }
+
     @Override
     public String toString() {
         if(jugadorGanador==null){

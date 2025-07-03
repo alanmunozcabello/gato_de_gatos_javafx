@@ -1,5 +1,13 @@
+import Gato_de_Gatos.Cuadrantes;
+import Gato_de_Gatos.Partida;
+import Interfaz_Grafica.Observador;
+import Interfaz_Grafica.VistaEnConsola;
+import Jugadores.*;
+import Serializador.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         ArrayList<Jugador> jugadores;

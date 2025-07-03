@@ -1,3 +1,7 @@
+package Interfaz_Grafica;
+
+import Gato_de_Gatos.Cuadrantes;
+
 public class VistaEnConsola implements Observador{
     public VistaEnConsola() {
         // Constructor de la clase VistaEnConsola
