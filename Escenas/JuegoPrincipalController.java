@@ -21,10 +21,8 @@ import Gato_de_Gatos.Gato;
 import java.io.FileInputStream;
 import Escenas.MenuInicialController;
 
-/*
-    Controlador principal de la vista de juego.
-    Maneja la lógica de la partida, interacción con el tablero, turnos, bots y serialización.
- */
+// Controlador principal de la vista de juego.
+// Maneja la lógica de la partida, interacción con el tablero, turnos, bots y serialización.
 public class JuegoPrincipalController {
     // Nombres de los jugadores (X y O)
     private String nombreJugador1;
@@ -56,10 +54,8 @@ public class JuegoPrincipalController {
 
     private final int SIZE = 9; // Tamaño del tablero (9x9)
 
-    /*
-        Recibe los nombres de los jugadores y quién comienza (1 o 2).
-        Inicializa la partida y marca si el bot debe iniciar.
-    */
+    // Recibe los nombres de los jugadores y quién comienza (1 o 2).
+    // Inicializa la partida y marca si el bot debe iniciar.
     public void setNombresJugadores(String nombre1, String nombre2, int quienComienza) {
         // nombre1: humano, nombre2: bot
         if (quienComienza == 1) {
@@ -84,9 +80,7 @@ public class JuegoPrincipalController {
         }
     }
 
-    /*
-        Busca un jugador existente por nombre o lo crea si no existe.
-    */
+    // Busca un jugador existente por nombre o lo crea si no existe.
     private Jugador obtenerJugador(String nombre) {
         Jugador existente = buscarJugadorExistente(nombre);
         if (existente != null) return existente;
@@ -95,17 +89,13 @@ public class JuegoPrincipalController {
         return nuevo;
     }
 
-    /**
-        Establece el turno inicial según quién comienza (1 = jugador1/X, 2 = jugador2/O).
-    */
+    // Establece el turno inicial según quién comienza (1 = jugador1/X, 2 = jugador2/O).
     public void setTurnoInicial(int quienComienza) {
         this.turnoX = (quienComienza == 1);
     }
 
-    /*
-        Inicializa la partida, asignando los jugadores y cuadrantes.
-        Si el modo es contra bot, asegura que el bot esté en la lista global.
-    */
+    // Inicializa la partida, asignando los jugadores y cuadrantes.
+    // Si el modo es contra bot, asegura que el bot esté en la lista global.
     private void inicializarPartida() {
         if ("BotFacil".equals(nombreJugador1)) {
             // Bot es X
@@ -186,10 +176,8 @@ public class JuegoPrincipalController {
         partida.Inicializar(jugador1, jugador2, cuadrantes);
     }
 
-    /*
-        Inicializa la interfaz gráfica: crea los botones del tablero, configura textos y GIF.
-        Si el bot debe iniciar, lo hace aquí (cuando todo está listo).
-    */
+    // Inicializa la interfaz gráfica: crea los botones del tablero, configura textos y GIF.
+    // Si el bot debe iniciar, lo hace aquí (cuando todo está listo).
     @FXML
     private void initialize() {
         // Crea los 81 botones del tablero y les asigna su evento de click
@@ -224,9 +212,7 @@ public class JuegoPrincipalController {
         }
     }
 
-    /*
-        Actualiza los textos de la interfaz con los nombres y el turno actual.
-    */
+    // Actualiza los textos de la interfaz con los nombres y el turno actual.
     private void actualizarTextos() {
         if (textJugadorX != null && jugador1 != null)
             textJugadorX.setText("Jugador X: " + jugador1.getNombre());
@@ -236,11 +222,9 @@ public class JuegoPrincipalController {
             textTurno.setText("Turno jugador " + (turnoX ? "X" : "O"));
     }
 
-    /*
-        Maneja el click de un botón del tablero (jugada de un jugador humano).
-        Valida el cuadrante, marca la casilla, actualiza movimientos y verifica victoria/empate.
-        Si el siguiente turno es de un bot, lo ejecuta automáticamente.
-    */
+    // Maneja el click de un botón del tablero (jugada de un jugador humano).
+    // Valida el cuadrante, marca la casilla, actualiza movimientos y verifica victoria/empate.
+    // Si el siguiente turno es de un bot, lo ejecuta automáticamente.
     private void manejarClick(int fila, int columna, Button btn) {
         int cuadFila = fila / 3;
         int cuadCol = columna / 3;
@@ -288,7 +272,7 @@ public class JuegoPrincipalController {
         }
 
         // Bloquea el cuadrante donde se acaba de jugar
-        cuadrantes.bloquearCuadrante(cuadFila, cuadCol);
+        cuadrantes.bloquearCuadrante(cuadranteActualX, cuadranteActualY);
 
         // Actualiza el cuadrante actual para el próximo turno
         cuadranteActualX = celdaFila;
@@ -324,11 +308,9 @@ public class JuegoPrincipalController {
         }
     }
 
-    /*
-        Realiza la jugada automática del bot en el cuadrante actual.
-        Marca la casilla, actualiza movimientos, verifica victoria/empate y cambia el turno.
-        Si el cuadrante destino está bloqueado, el bot elige uno válido.
-    */
+    // Realiza la jugada automática del bot en el cuadrante actual.
+    // Marca la casilla, actualiza movimientos, verifica victoria/empate y cambia el turno.
+    // Si el cuadrante destino está bloqueado, el bot elige uno válido.
     private void jugadaBot(Jugador bot) {
         // Si el cuadrante destino está bloqueado, el bot debe elegir uno válido
         Gato cuadrante;
@@ -392,10 +374,8 @@ public class JuegoPrincipalController {
         actualizarTextos();
     }
 
-    /*
-        Realiza el primer turno automático del bot cuando le toca iniciar la partida.
-        Elige un cuadrante y una casilla aleatoria, marca la jugada y actualiza el estado.
-     */
+    // Realiza el primer turno automático del bot cuando le toca iniciar la partida.
+    // Elige un cuadrante y una casilla aleatoria, marca la jugada y actualiza el estado.
     private void turnoInicialBot() {
         // El bot elige un cuadrante aleatorio para iniciar
         int cuadX = (int) (Math.random() * 3);
@@ -449,7 +429,7 @@ public class JuegoPrincipalController {
         actualizarTextos();
     }
 
-    //Maneja la acción de rendirse. Actualiza estadísticas y termina la partida.
+    // Maneja la acción de rendirse. Actualiza estadísticas y termina la partida.
     private void handleSurrender() {
         String perdedor = turnoX ? jugador1.getNombre() : jugador2.getNombre();
         String ganador = turnoX ? jugador2.getNombre() : jugador1.getNombre();
@@ -458,7 +438,7 @@ public class JuegoPrincipalController {
         finalizarPartida(true);
     }
 
-    //Bloquea todos los botones del tablero (deshabilita el tablero).
+    // Bloquea todos los botones del tablero (deshabilita el tablero).
     private void bloquearTablero() {
         for (javafx.scene.Node node : tableroGrid.getChildren()) {
             if (node instanceof Button) {
@@ -467,7 +447,7 @@ public class JuegoPrincipalController {
         }
     }
 
-    //Muestra una alerta informativa en pantalla.
+    // Muestra una alerta informativa en pantalla.
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
@@ -551,7 +531,7 @@ public class JuegoPrincipalController {
         }
     }
 
-    //Finaliza la partida por defecto (no surrender).
+    // Finaliza la partida por defecto (no surrender).
     private void finalizarPartida() {
         finalizarPartida(false);
     }
