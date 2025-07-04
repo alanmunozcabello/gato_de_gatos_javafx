@@ -8,21 +8,26 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
+// Controlador para la escena de "Jugador vs Bot Fácil"
 public class JugadorVsBotFacilController {
+    // Campo de texto para el nombre del jugador humano
     @FXML private TextField nombreJugadorField;
+    // Botón para iniciar la partida
     @FXML private Button iniciarPartidaButton;
 
+    // Inicializa el controlador y asigna el evento al botón
     @FXML
     private void initialize() {
         iniciarPartidaButton.setOnAction(e -> iniciarPartida());
     }
 
+    // Lógica para iniciar la partida contra el bot fácil
     private void iniciarPartida() {
-        String nombre = nombreJugadorField.getText();
-        String nombreBot = "BotFacil";
+        String nombre = nombreJugadorField.getText(); // Obtiene el nombre del jugador
+        String nombreBot = "BotFacil"; // Nombre fijo para el bot
 
         try {
-            // Lanzar ventana de dados
+            // Lanza la ventana de dados para decidir quién comienza
             FXMLLoader dadosLoader = new FXMLLoader(getClass().getResource("/Escenas/Ventana_dados.fxml"));
             Parent dadosRoot = dadosLoader.load();
             VentanaDadosController dadosController = dadosLoader.getController();
@@ -36,7 +41,7 @@ public class JugadorVsBotFacilController {
 
             int quienComienza = dadosController.getQuienComienza(); // 1 = jugador, 2 = bot
 
-            // Cargar la escena principal y pasar los nombres y el turno inicial
+            // Carga la escena principal y pasa los nombres y el turno inicial
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Escenas/Juego_principal.fxml"));
             Parent root = loader.load();
 
@@ -44,10 +49,11 @@ public class JugadorVsBotFacilController {
             controller.setNombresJugadores(nombre, nombreBot, quienComienza);
             controller.setTurnoInicial(quienComienza);
 
+            // Cambia la escena actual a la del juego principal
             Stage stage = (Stage) iniciarPartidaButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(); // Muestra errores en consola si ocurre algún problema
         }
     }
 }

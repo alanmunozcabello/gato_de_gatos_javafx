@@ -12,12 +12,14 @@ import java.util.ArrayList;
 
 import Gato_de_Gatos.Partida;
 
+// Controlador para la escena del historial de partidas
 public class HistorialPartidasController {
-    @FXML private ListView<String> listViewPartidas;
-    @FXML private Button atrasButton; 
+    @FXML private ListView<String> listViewPartidas; // Lista para mostrar partidas
+    @FXML private Button atrasButton; // Botón para volver al menú
 
-    private ArrayList<Partida> partidas;
+    private ArrayList<Partida> partidas; // Lista de objetos Partida
 
+    // Inicializa el controlador, asignando acción al botón de volver
     @FXML
     private void initialize() {
         if (atrasButton != null) {
@@ -25,6 +27,7 @@ public class HistorialPartidasController {
         }
     }
 
+    // Cambia la escena al menú inicial
     private void volverAlMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu_inicial.fxml"));
@@ -36,6 +39,7 @@ public class HistorialPartidasController {
         }
     }
 
+    // Recibe y muestra la lista de partidas en el ListView
     public void setPartidas(ArrayList<Partida> partidas) {
         this.partidas = partidas; // Guarda la referencia
         listViewPartidas.getItems().clear();
@@ -44,11 +48,13 @@ public class HistorialPartidasController {
         }
     }
 
+    // Cambia la escena a la vista de historial de partidas
     private void cambiarEscena(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
             if (fxml.equals("Historial_partidas.fxml")) {
+                // Si la nueva escena es el historial, pasa la lista de partidas al controlador
                 HistorialPartidasController controller = loader.getController();
                 controller.setPartidas(partidas); // Ahora sí existe
             }

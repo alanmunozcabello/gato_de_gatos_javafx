@@ -3,3 +3,11 @@ javac --module-path "C:\Users\alanm\javafx-sdk-21.0.7\lib" --add-modules javafx.
 
 Ejecutar:
 java --module-path "C:\Users\alanm\javafx-sdk-21.0.7\lib" --add-modules javafx.controls,javafx.fxml -cp bin MainApp
+
+versión de compilación:
+    openjdk version "21.0.5" 2024-10-15 LTS
+    OpenJDK Runtime Environment Temurin-21.0.5+11 (build 21.0.5+11-LTS)
+    OpenJDK 64-Bit Server VM Temurin-21.0.5+11 (build 21.0.5+11-LTS, mixed mode, sharing)
+
+versión javac:
+    javac 21.0.5
