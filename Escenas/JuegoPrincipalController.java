@@ -272,7 +272,7 @@ public class JuegoPrincipalController {
         }
 
         // Bloquea el cuadrante donde se acaba de jugar
-        cuadrantes.bloquearCuadrante(cuadranteActualX, cuadranteActualY);
+        cuadrantes.bloquearCuadrante(cuadFila, cuadCol);
 
         // Actualiza el cuadrante actual para el próximo turno
         cuadranteActualX = celdaFila;
