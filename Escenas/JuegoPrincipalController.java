@@ -1,6 +1,5 @@
 package Escenas;
 
-// Importaciones de JavaFX y clases del juego
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,6 +41,9 @@ public class JuegoPrincipalController {
     private int cuadranteActualX = -1;
     private int cuadranteActualY = -1;
 
+    // Variable para controlar si el bot debe iniciar la partida
+    private boolean esBotTurnoInicial = false;
+
     // Elementos de la interfaz gráfica
     @FXML private GridPane tableroGrid;
     @FXML private Text textJugadorX;
@@ -56,22 +58,29 @@ public class JuegoPrincipalController {
 
     /*
         Recibe los nombres de los jugadores y quién comienza (1 o 2).
-        Inicializa la partida y, si el bot es X, realiza el primer turno automáticamente.
+        Inicializa la partida y marca si el bot debe iniciar.
     */
     public void setNombresJugadores(String nombre1, String nombre2, int quienComienza) {
+        // nombre1: humano, nombre2: bot
         if (quienComienza == 1) {
+            // Humano comienza (X)
             this.nombreJugador1 = nombre1; // X
             this.nombreJugador2 = nombre2; // O
         } else {
-            this.nombreJugador1 = nombre2; // X
-            this.nombreJugador2 = nombre1; // O
+            // Bot comienza (X)
+            this.nombreJugador1 = nombre2; // X (bot)
+            this.nombreJugador2 = nombre1; // O (humano)
         }
         inicializarPartida();
         actualizarTextos();
 
-        // Si el bot es X, realiza el primer turno automáticamente
-        if (jugador1 instanceof botFacil || jugador1 instanceof botDificil) {
+        // Si el bot es jugador1 (X) y la interfaz ya está inicializada, lanza el turno inicial del bot
+        if ((jugador1 instanceof botFacil || jugador1 instanceof botDificil) && tableroGrid != null) {
+            // Ejecuta el turno inicial del bot
             turnoInicialBot();
+        } else {
+            // Marca para que se ejecute en initialize() si aún no está lista la interfaz
+            esBotTurnoInicial = (jugador1 instanceof botFacil || jugador1 instanceof botDificil);
         }
     }
 
@@ -98,8 +107,44 @@ public class JuegoPrincipalController {
         Si el modo es contra bot, asegura que el bot esté en la lista global.
     */
     private void inicializarPartida() {
-        if ("BotFacil".equals(nombreJugador2)) {
-            jugador1 = obtenerJugador(nombreJugador1);
+        if ("BotFacil".equals(nombreJugador1)) {
+            // Bot es X
+            jugador1 = null;
+            for (Jugador j : MenuInicialController.jugadores) {
+                if (j instanceof botFacil) {
+                    jugador1 = j;
+                    break;
+                }
+            }
+            if (jugador1 == null) {
+                jugador1 = new botFacil('X');
+                MenuInicialController.jugadores.add(jugador1);
+            } else {
+                jugador1.setSimbolo('X');
+            }
+            jugador2 = obtenerJugador(nombreJugador2); // humano
+            jugador2.setSimbolo('O');
+        } else if ("BotDificil".equals(nombreJugador1)) {
+            // Bot es X
+            jugador1 = null;
+            for (Jugador j : MenuInicialController.jugadores) {
+                if (j instanceof botDificil) {
+                    jugador1 = j;
+                    break;
+                }
+            }
+            if (jugador1 == null) {
+                jugador1 = new botDificil('X');
+                MenuInicialController.jugadores.add(jugador1);
+            } else {
+                jugador1.setSimbolo('X');
+            }
+            jugador2 = obtenerJugador(nombreJugador2); // humano
+            jugador2.setSimbolo('O');
+        } else if ("BotFacil".equals(nombreJugador2)) {
+            // Humano es X, bot es O
+            jugador1 = obtenerJugador(nombreJugador1); // humano
+            jugador1.setSimbolo('X');
             jugador2 = null;
             for (Jugador j : MenuInicialController.jugadores) {
                 if (j instanceof botFacil) {
@@ -110,9 +155,13 @@ public class JuegoPrincipalController {
             if (jugador2 == null) {
                 jugador2 = new botFacil('O');
                 MenuInicialController.jugadores.add(jugador2);
+            } else {
+                jugador2.setSimbolo('O');
             }
         } else if ("BotDificil".equals(nombreJugador2)) {
-            jugador1 = obtenerJugador(nombreJugador1);
+            // Humano es X, bot es O
+            jugador1 = obtenerJugador(nombreJugador1); // humano
+            jugador1.setSimbolo('X');
             jugador2 = null;
             for (Jugador j : MenuInicialController.jugadores) {
                 if (j instanceof botDificil) {
@@ -123,10 +172,14 @@ public class JuegoPrincipalController {
             if (jugador2 == null) {
                 jugador2 = new botDificil('O');
                 MenuInicialController.jugadores.add(jugador2);
+            } else {
+                jugador2.setSimbolo('O');
             }
         } else {
             jugador1 = obtenerJugador(nombreJugador1);
+            jugador1.setSimbolo('X');
             jugador2 = obtenerJugador(nombreJugador2);
+            jugador2.setSimbolo('O');
         }
         cuadrantes = new Cuadrantes();
         partida = Partida.getInstance();
@@ -135,6 +188,7 @@ public class JuegoPrincipalController {
 
     /*
         Inicializa la interfaz gráfica: crea los botones del tablero, configura textos y GIF.
+        Si el bot debe iniciar, lo hace aquí (cuando todo está listo).
     */
     @FXML
     private void initialize() {
@@ -161,7 +215,13 @@ public class JuegoPrincipalController {
         gifImageView.setPreserveRatio(true);
         gifPane.getChildren().clear();
         gifPane.getChildren().add(gifImageView);
-        mostrarGif("./manion_bailando.gif"); // Cambia la ruta por la de tu GIF
+        mostrarGif("./manion_bailando.gif");
+
+        // Si el bot debe iniciar, lo hace aquí (cuando todo está listo)
+        if (esBotTurnoInicial) {
+            esBotTurnoInicial = false;
+            turnoInicialBot(); // <-- ESTA LÍNEA ES FUNDAMENTAL
+        }
     }
 
     /*
@@ -186,15 +246,28 @@ public class JuegoPrincipalController {
         int cuadCol = columna / 3;
         int celdaFila = fila % 3;
         int celdaCol = columna % 3;
-
-        // Solo permitir jugada en el cuadrante correcto (si aplica)
-        if (cuadranteActualX != -1 && cuadranteActualY != -1) {
+    
+        // Solo permitir jugada si es turno del humano
+        if ((turnoX && (jugador1 instanceof botFacil || jugador1 instanceof botDificil)) ||
+            (!turnoX && (jugador2 instanceof botFacil || jugador2 instanceof botDificil))) {
+            return;
+        }
+    
+        // Si hay cuadrante destino, solo permitir jugar ahí (si está libre)
+        if (cuadranteActualX != -1 && cuadranteActualY != -1 &&
+            cuadrantes.getCuadrante(cuadranteActualX, cuadranteActualY).getEstado().equals("libre")) {
             if (cuadFila != cuadranteActualX || cuadCol != cuadranteActualY) {
                 mostrarAlerta("Movimiento inválido", "Debes jugar en el cuadrante (" + (cuadranteActualX+1) + "," + (cuadranteActualY+1) + ")");
                 return;
             }
+        } else {
+            // Si el cuadrante destino está bloqueado, puedes jugar en cualquier cuadrante libre
+            if (!cuadrantes.getCuadrante(cuadFila, cuadCol).getEstado().equals("libre")) {
+                mostrarAlerta("Cuadrante bloqueado", "Debes jugar en un cuadrante libre.");
+                return;
+            }
         }
-
+    
         // Verifica si la celda está libre
         Gato cuadrante = cuadrantes.getCuadrante(cuadFila, cuadCol);
         if (!cuadrante.verificarCasillaOcupada(celdaFila, celdaCol)) {
@@ -214,7 +287,7 @@ public class JuegoPrincipalController {
             partida.aumentarMovimientosJO();
         }
 
-        // Bloquea el cuadrante si corresponde
+        // Bloquea el cuadrante donde se acaba de jugar
         cuadrantes.bloquearCuadrante(cuadFila, cuadCol);
 
         // Actualiza el cuadrante actual para el próximo turno
@@ -240,26 +313,43 @@ public class JuegoPrincipalController {
         actualizarTextos();
 
         // Si el siguiente turno es de un bot, ejecuta su jugada automáticamente
-        if (!turnoX && jugador2 instanceof botFacil) {
-            jugadaBot((botFacil)jugador2);
-        } else if (!turnoX && jugador2 instanceof botDificil) {
-            jugadaBot((botDificil)jugador2);
+        if (turnoX && (jugador1 instanceof botFacil)) {
+            jugadaBot(jugador1);
+        } else if (turnoX && (jugador1 instanceof botDificil)) {
+            jugadaBot(jugador1);
+        } else if (!turnoX && (jugador2 instanceof botFacil)) {
+            jugadaBot(jugador2);
+        } else if (!turnoX && (jugador2 instanceof botDificil)) {
+            jugadaBot(jugador2);
         }
     }
 
     /*
         Realiza la jugada automática del bot en el cuadrante actual.
         Marca la casilla, actualiza movimientos, verifica victoria/empate y cambia el turno.
+        Si el cuadrante destino está bloqueado, el bot elige uno válido.
     */
     private void jugadaBot(Jugador bot) {
-        Gato cuadrante = cuadrantes.getCuadrante(cuadranteActualX, cuadranteActualY);
+        // Si el cuadrante destino está bloqueado, el bot debe elegir uno válido
+        Gato cuadrante;
+        int cuadranteBotX = cuadranteActualX;
+        int cuadranteBotY = cuadranteActualY;
+        if (cuadranteActualX == -1 || cuadranteActualY == -1 ||
+            !cuadrantes.getCuadrante(cuadranteActualX, cuadranteActualY).getEstado().equals("libre")) {
+            cuadrante = bot.seleccionarCuadranteDeJuego(cuadrantes);
+            cuadranteBotX = bot.getFila();
+            cuadranteBotY = bot.getColumna();
+        } else {
+            cuadrante = cuadrantes.getCuadrante(cuadranteActualX, cuadranteActualY);
+        }
+
         bot.hacerSeleccion(cuadrante);
         int fila = bot.getFila();
         int col = bot.getColumna();
 
         // Actualiza el botón correspondiente en la interfaz
-        int globalFila = cuadranteActualX * 3 + fila;
-        int globalCol = cuadranteActualY * 3 + col;
+        int globalFila = cuadranteBotX * 3 + fila;
+        int globalCol = cuadranteBotY * 3 + col;
         for (javafx.scene.Node node : tableroGrid.getChildren()) {
             if (GridPane.getRowIndex(node) == globalFila && GridPane.getColumnIndex(node) == globalCol) {
                 Button btn = (Button) node;
@@ -276,7 +366,8 @@ public class JuegoPrincipalController {
             partida.aumentarMovimientosJO();
         }
 
-        cuadrantes.bloquearCuadrante(cuadranteActualX, cuadranteActualY);
+        // Bloquea el cuadrante donde el bot acaba de jugar
+        cuadrantes.bloquearCuadrante(cuadranteBotX, cuadranteBotY);
 
         // Actualiza el cuadrante actual para el próximo turno
         cuadranteActualX = fila;
@@ -332,6 +423,7 @@ public class JuegoPrincipalController {
         // Incrementa movimientos del bot
         partida.aumentarMovimientosJX();
 
+        // Bloquea el cuadrante inicial
         cuadrantes.bloquearCuadrante(cuadX, cuadY);
 
         // Actualiza el cuadrante actual para el próximo turno
@@ -356,7 +448,6 @@ public class JuegoPrincipalController {
         turnoX = false;
         actualizarTextos();
     }
-
 
     //Maneja la acción de rendirse. Actualiza estadísticas y termina la partida.
     private void handleSurrender() {
